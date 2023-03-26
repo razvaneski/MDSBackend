@@ -10,6 +10,7 @@ app.use(express.json());
 
 const User = require("./model/user");
 const Vehicle = require("./model/vehicle");
+const { json } = require("express");
 
 function getUserIdFromToken(token) {
   try {
@@ -184,6 +185,53 @@ app.get("/getvehicles", async (req, res) => {
   } else {
     const vehicles = await Vehicle.find({ user_id: userId });
     res.status(200).json(vehicles);
+  }
+});
+
+app.get("/getvehicle/", async (req, res) => {
+  const { token } = req.headers;
+  const { id } = req.query;
+  const userId = getUserIdFromToken(token);
+  if (!userId) {
+    res.status(400).send("Invalid token");
+  } else {
+    const vehicle = await Vehicle.findById(id);
+    if (!vehicle) {
+      res.status(400).send("No vehicle found");
+    } else {
+      if (vehicle.user_id === userId) {
+        res.status(200).json(vehicle);
+      } else {
+        res.status(400).send("Invalid token");
+      }
+    }
+  }
+});
+
+app.post("/updatevehicle", async (req, res) => {
+  const { token } = req.headers;
+  const userId = getUserIdFromToken(token);
+  const { id } = req.query;
+  if (!userId) {
+    res.status(400).send("Invalid token");
+  } else {
+    const vehicle = await Vehicle.findById(id);
+    if (!vehicle) {
+      res.status(400).send("No vehicle found");
+    } else {
+      if (vehicle.user_id === userId) {
+        const { make, model, year, vin, license_plate } = req.body;
+        vehicle.make = make;
+        vehicle.model = model;
+        vehicle.year = year;
+        vehicle.vin = vin;
+        vehicle.license_plate = license_plate;
+        await vehicle.save();
+        res.status(200).json(vehicle);
+      } else {
+        res.status(400).send("Invalid token");
+      }
+    }
   }
 });
 
