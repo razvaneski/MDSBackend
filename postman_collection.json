@@ -1,0 +1,210 @@
+{
+	"info": {
+		"_postman_id": "9358f683-cc1f-4798-9f3b-2585c5e94dc9",
+		"name": "ProiectMDS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22424148"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"first_name\": \"Tuyu\",\n    \"last_name\": \"Test\",\n    \"username\": \"tuyu\",\n    \"password\": \"123987\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4001/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4001",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"tuyu\",\n    \"password\": \"123987\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4001/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4001",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get user info from token",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQxNWUwYTYxMDUzZDM3N2U0MmY2NWY1IiwidXNlcm5hbWUiOiJ0dXl1IiwiaWF0IjoxNjc5ODYwODY1LCJleHAiOjE2Nzk4NjgwNjV9.0VAGgyVEijQmURiWgOO4DJYG-03esi8LP3mDnH-JBf8",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4001/getuser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4001",
+					"path": [
+						"getuser"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQxNWUwYTYxMDUzZDM3N2U0MmY2NWY1IiwidXNlcm5hbWUiOiJ0dXl1IiwiaWF0IjoxNjc5ODU5MzUxLCJleHAiOjE2Nzk4NjY1NTF9._xLxBWr9Ok2hB0cU4pCiF1RTodWtjTCcyniYUCLfVKA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4001/logout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4001",
+					"path": [
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add vehicle",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQxNWUwYTYxMDUzZDM3N2U0MmY2NWY1IiwidXNlcm5hbWUiOiJ0dXl1IiwiaWF0IjoxNjc5ODYwODY1LCJleHAiOjE2Nzk4NjgwNjV9.0VAGgyVEijQmURiWgOO4DJYG-03esi8LP3mDnH-JBf8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"make\": \"BMW\",\n    \"model\": \"1-series\",\n    \"year\": \"2020\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4001/addvehicle",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4001",
+					"path": [
+						"addvehicle"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get vehicles",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQxNWUwYTYxMDUzZDM3N2U0MmY2NWY1IiwidXNlcm5hbWUiOiJ0dXl1IiwiaWF0IjoxNjc5ODYwODY1LCJleHAiOjE2Nzk4NjgwNjV9.0VAGgyVEijQmURiWgOO4DJYG-03esi8LP3mDnH-JBf8",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4001/getvehicles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4001",
+					"path": [
+						"getvehicles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get vehicle by ID",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Update vehicle",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"make\": \"Ford\",\n    \"model\": \"1-series\",\n    \"year\": \"2021\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		}
+	]
+}

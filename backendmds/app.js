@@ -188,7 +188,7 @@ app.get("/getvehicles", async (req, res) => {
   }
 });
 
-app.get("/getvehicle/", async (req, res) => {
+app.get("/getvehicle", async (req, res) => {
   const { token } = req.headers;
   const { id } = req.query;
   const userId = getUserIdFromToken(token);
@@ -228,6 +228,27 @@ app.post("/updatevehicle", async (req, res) => {
         vehicle.license_plate = license_plate;
         await vehicle.save();
         res.status(200).json(vehicle);
+      } else {
+        res.status(400).send("Invalid token");
+      }
+    }
+  }
+});
+
+app.post("/deletevehicle", async (req, res) => {
+  const { token } = req.headers;
+  const userId = getUserIdFromToken(token);
+  const { id } = req.query;
+  if (!userId) {
+    res.status(400).send("Invalid token");
+  } else {
+    const vehicle = await Vehicle.findById(id);
+    if (!vehicle) {
+      res.status(400).send("No vehicle found");
+    } else {
+      if (vehicle.user_id == userId) {
+        await Vehicle.findByIdAndDelete(id);
+        res.status(200).send("Vehicle deleted");
       } else {
         res.status(400).send("Invalid token");
       }
