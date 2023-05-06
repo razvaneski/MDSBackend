@@ -8,6 +8,8 @@ target 'RepairShop' do
   # Pods for RepairShop
   pod 'Alamofire'
   pod 'SwiftyJSON'
-  pod 'Alamofire'
+  pod 'netfox'
+  pod 'RxSwift'
 
+  pod 'SwiftMessages'
 end
