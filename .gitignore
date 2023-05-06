@@ -108,15 +108,15 @@ dist
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
 ## User settings
-xcuserdata/
+RepairShop/xcuserdata/
 
 ## compatibility with Xcode 8 and earlier (ignoring not required starting Xcode 9)
 *.xcscmblueprint
 *.xccheckout
 
 ## compatibility with Xcode 3 and earlier (ignoring not required starting Xcode 4)
-build/
-DerivedData/
+RepairShop/build/
+RepairShop/DerivedData/
 *.moved-aside
 *.pbxuser
 !default.pbxuser
@@ -136,8 +136,8 @@ DerivedData/
 *.dSYM
 
 ## Playgrounds
-timeline.xctimeline
-playground.xcworkspace
+RepairShop/timeline.xctimeline
+RepairShop/playground.xcworkspace
 
 # Swift Package Manager
 #
@@ -159,7 +159,7 @@ playground.xcworkspace
 # you should judge for yourself, the pros and cons are mentioned at:
 # https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
 #
-  Pods/
+  RepairShop/Pods/
 #
 # Add this line if you want to avoid checking in source code from the Xcode workspace
   *.xcworkspace
@@ -167,12 +167,12 @@ playground.xcworkspace
 # Carthage
 #
 # Add this line if you want to avoid checking in source code from Carthage dependencies.
-  Carthage/Checkouts
+  RepairShop/Carthage/Checkouts
 
-Carthage/Build/
+RepairShop/Carthage/Build/
 
 # Accio dependency management
-Dependencies/
+RepairShop/Dependencies/
 .accio/
 
 # fastlane
@@ -182,14 +182,14 @@ Dependencies/
 # For more information about the recommended setup visit:
 # https://docs.fastlane.tools/best-practices/source-control/#source-control
 
-fastlane/report.xml
-fastlane/Preview.html
-fastlane/screenshots/**/*.png
-fastlane/test_output
+RepairShop/fastlane/report.xml
+RepairShop/fastlane/Preview.html
+RepairShop/fastlane/screenshots/**/*.png
+RepairShop/fastlane/test_output
 
 # Code Injection
 #
 # After new code Injection tools there's a generated folder /iOSInjectionProject
 # https://github.com/johnno1962/injectionforxcode
 
-iOSInjectionProject/
+RepairShop/iOSInjectionProject/
