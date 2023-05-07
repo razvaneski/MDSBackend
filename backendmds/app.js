@@ -28,11 +28,11 @@ app.post("/register", async (req, res) => {
     // Our register logic starts here
     try {
       // Get user input
-      const { first_name, last_name, username, password } = req.body;
+      const { first_name, last_name, username, password, user_type } = req.body;
   
       // Validate user input
-      if (!(username && password && first_name && last_name)) {
-        res.status(400).send("All input is required");
+      if (!(username && password && first_name && last_name && user_type)) {
+        res.status(416).send("All input is required");
       }
   
       // check if user already exist
@@ -40,7 +40,7 @@ app.post("/register", async (req, res) => {
       const oldUser = await User.findOne({ username });
   
       if (oldUser) {
-        return res.status(409).send("User Already Exist. Please Login");
+        return res.status(416).send("User already exists. Please log in.");
       }
   
       //Encrypt user password
@@ -52,6 +52,7 @@ app.post("/register", async (req, res) => {
         last_name,
         username: username.toLowerCase(), // sanitize: convert username to lowercase
         password: encryptedPassword,
+        user_type: user_type.toLowerCase(),
       });
   
       // Create token
@@ -83,7 +84,7 @@ app.post("/login", async (req, res) => {
   
       // Validate user input
       if (!(username && password)) {
-        res.status(400).send("All input is required");
+        res.status(416).send("All input is required");
       }
       // Validate if user exist in our database
       const user = await User.findOne({ username });
@@ -104,7 +105,7 @@ app.post("/login", async (req, res) => {
         // user
         res.status(200).json(user);
       }
-      res.status(400).send("Invalid Credentials");
+      res.status(416).send("Invalid Credentials");
     } catch (err) {
       console.log(err);
     }
@@ -120,13 +121,13 @@ app.get("/getuser", async (req, res) => {
     const user = await User.findById(userId);
     if (!user) {
       console.log("no user");
-      res.status(400).send("Invalid token");
+      res.status(416).send("Invalid token");
     }
     else if (user.token !== token) {
       console.log("token mismatch");
       // console.log(user.token);
       // console.log(token);
-      res.status(400).send("Invalid token");
+      res.status(416).send("Invalid token");
     } else {
       console.log("token match");
       res.status(200).json(user);
@@ -134,7 +135,7 @@ app.get("/getuser", async (req, res) => {
 
   } catch (error) {
     console.log("invalid token");
-    res.status(400).send("Invalid token");
+    res.status(416).send("Invalid token");
   }
 });
 
@@ -146,14 +147,14 @@ app.post("/logout", async (req, res) => {
 
     const user = await User.findById(userId);
     if (!user) {
-      res.status(400).send("Invalid token");
+      res.status(416).send("Invalid token");
     } else {
       user.token = null;
       await user.save();
       res.status(200).send("Logout successful");
     }
   } catch {
-    res.status(400).send("Invalid token");
+    res.status(416).send("Invalid token");
   }
 });
 
@@ -161,7 +162,7 @@ app.post("/addvehicle", async (req, res) => {
   const { token } = req.headers;
   const userId = getUserIdFromToken(token);
   if (!userId) {
-    res.status(400).send("Invalid token");
+    res.status(416).send("Invalid token");
   } else {
     const { make, model, year, vin, license_plate } = req.body;
     const vehicle = await Vehicle.create({
@@ -181,7 +182,7 @@ app.get("/getvehicles", async (req, res) => {
   const { token } = req.headers;
   const userId = getUserIdFromToken(token);
   if (!userId) {
-    res.status(400).send("Invalid token");
+    res.status(416).send("Invalid token");
   } else {
     const vehicles = await Vehicle.find({ user_id: userId });
     res.status(200).json(vehicles);
@@ -193,16 +194,16 @@ app.get("/getvehicle", async (req, res) => {
   const { id } = req.query;
   const userId = getUserIdFromToken(token);
   if (!userId) {
-    res.status(400).send("Invalid token");
+    res.status(416).send("Invalid token");
   } else {
     const vehicle = await Vehicle.findById(id);
     if (!vehicle) {
-      res.status(400).send("No vehicle found");
+      res.status(416).send("No vehicle found");
     } else {
       if (vehicle.user_id === userId) {
         res.status(200).json(vehicle);
       } else {
-        res.status(400).send("Invalid token");
+        res.status(416).send("Invalid token");
       }
     }
   }
@@ -213,11 +214,11 @@ app.post("/updatevehicle", async (req, res) => {
   const userId = getUserIdFromToken(token);
   const { id } = req.query;
   if (!userId) {
-    res.status(400).send("Invalid token");
+    res.status(416).send("Invalid token");
   } else {
     const vehicle = await Vehicle.findById(id);
     if (!vehicle) {
-      res.status(400).send("No vehicle found");
+      res.status(416).send("No vehicle found");
     } else {
       if (vehicle.user_id === userId) {
         const { make, model, year, vin, license_plate } = req.body;
@@ -229,7 +230,7 @@ app.post("/updatevehicle", async (req, res) => {
         await vehicle.save();
         res.status(200).json(vehicle);
       } else {
-        res.status(400).send("Invalid token");
+        res.status(416).send("Invalid token");
       }
     }
   }
@@ -240,17 +241,17 @@ app.post("/deletevehicle", async (req, res) => {
   const userId = getUserIdFromToken(token);
   const { id } = req.query;
   if (!userId) {
-    res.status(400).send("Invalid token");
+    res.status(416).send("Invalid token");
   } else {
     const vehicle = await Vehicle.findById(id);
     if (!vehicle) {
-      res.status(400).send("No vehicle found");
+      res.status(416).send("No vehicle found");
     } else {
       if (vehicle.user_id == userId) {
         await Vehicle.findByIdAndDelete(id);
         res.status(200).send("Vehicle deleted");
       } else {
-        res.status(400).send("Invalid token");
+        res.status(416).send("Invalid token");
       }
     }
   }

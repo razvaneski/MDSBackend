@@ -11,6 +11,7 @@ import SwiftyJSON
 
 enum ApplicationError: Error {
     case invalidToken
+    case message(str: String)
 }
 
 class UserService: BaseService {
@@ -26,18 +27,35 @@ class UserService: BaseService {
         return localStorage.getString(key: .userToken)
     }
     
-    let userInfo = Variable<UserInfo?>(nil)
+    var currentUserInfo: UserInfo!
     
     func login(username: String, password: String) -> Completable {
         return UserAPI.shared.login(username: username, password: password)
-            .do(onSuccess: { response in
-                self.userInfo.value = response
-                // TODO: set token in userdefaults
+            .do(onSuccess: { [weak self] response in
+                self?.currentUserInfo = response
+                self?.localStorage.setString(response.token, key: .userToken)
             }).asCompletable()
     }
     
     func getUserInfo() -> Completable {
         if token.isEmpty { return Completable.error(ApplicationError.invalidToken) }
-        return UserAPI.shared.getUserInfo(token: token).asCompletable()
+        return UserAPI.shared.getUserInfo(token: token)
+            .do { [weak self] userInfo in
+                self?.currentUserInfo = userInfo
+                self?.localStorage.setString(userInfo.token, key: .userToken)
+            }.asCompletable()
+    }
+    
+    func signUp(firstName: String, lastName: String, username: String, password: String, userType: String) -> Completable {
+        return UserAPI.shared.signUp(
+            firstName: firstName,
+            lastName: lastName,
+            username: username,
+            password: password,
+            userType: userType
+        ).do { [weak self] userInfo in
+            self?.currentUserInfo = userInfo
+            self?.localStorage.setString(userInfo.token, key: .userToken)
+        }.asCompletable()
     }
 }

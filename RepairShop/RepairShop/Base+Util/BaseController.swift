@@ -12,22 +12,24 @@ import SwiftMessages
 class BaseController: UIViewController {
     let disposeBag = DisposeBag()
     
+    // TODO: Refactor loaders (as subviews)
+    
     func showLoader() {
-        let alert = UIAlertController(title: nil, message: "Loading...", preferredStyle: .alert)
-
-        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
-        loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.style = .medium
-        loadingIndicator.startAnimating();
-
-        alert.view.addSubview(loadingIndicator)
-        present(alert, animated: true, completion: nil)
+//        let alert = UIAlertController(title: nil, message: "Loading...", preferredStyle: .alert)
+//
+//        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+//        loadingIndicator.hidesWhenStopped = true
+//        loadingIndicator.style = .medium
+//        loadingIndicator.startAnimating();
+//
+//        alert.view.addSubview(loadingIndicator)
+//        present(alert, animated: true, completion: nil)
     }
     
     func hideLoader() {
-        if let vc = self.presentedViewController, vc is UIAlertController {
-            self.dismiss(animated: true)
-        }
+//        if let vc = self.presentedViewController, vc is UIAlertController {
+//            self.dismiss(animated: true)
+//        }
     }
     
     func handleError(error: Error) {
@@ -39,6 +41,8 @@ class BaseController: UIViewController {
             switch appError {
             case .invalidToken:
                 view.configureContent(title: "Error!", body: "Invalid token")
+            case .message(str: let message):
+                view.configureContent(title: "Error!", body: message)
             }
         } else if let networkError = error as? NetworkError {
             switch networkError {
@@ -48,6 +52,18 @@ class BaseController: UIViewController {
         } else {
             view.configureContent(title: "Error!", body: "An unexpected error occured, please try again")
         }
+        view.button?.isHidden = true
+        
+        (view.backgroundView as? CornerRoundingView)?.cornerRadius = 10
+        SwiftMessages.show(view: view)
+    }
+    
+    func showErrorMessage(_ string: String) {
+        let view = MessageView.viewFromNib(layout: .cardView)
+        view.configureTheme(.error)
+        view.configureDropShadow()
+        
+        view.configureContent(title: "Error!", body: string)
         view.button?.isHidden = true
         
         (view.backgroundView as? CornerRoundingView)?.cornerRadius = 10

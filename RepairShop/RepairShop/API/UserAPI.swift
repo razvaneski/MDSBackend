@@ -44,4 +44,24 @@ class UserAPI: BaseAPI {
             )
         }
     }
+    
+    func signUp(firstName: String, lastName: String, username: String, password: String, userType: String) -> Single<UserInfo> {
+        let params = [
+            "first_name": firstName,
+            "last_name": lastName,
+            "username": username,
+            "password": password,
+            "user_type": userType
+        ]
+        
+        return call(endpoint: "register", method: .post, params: params) { json in
+            return UserInfo(
+                firstName: json["first_name"].stringValue,
+                lastName: json["last_name"].stringValue,
+                userName: json["username"].stringValue,
+                userType: .init(rawValue: json["user_type"].stringValue)!,
+                token: json["token"].stringValue
+            )
+        }
+    }
 }

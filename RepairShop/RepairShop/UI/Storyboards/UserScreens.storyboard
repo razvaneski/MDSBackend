@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--My Vehicles Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="MyVehiclesController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="MyVehiclesController" customModule="RepairShop" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Vehicles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xca-M7-ZP0">
+                                <rect key="frame" x="151" y="79" width="91.333333333333314" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="x2L-XC-GNo">
+                                <rect key="frame" x="20" y="140" width="353" height="658"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="VehicleTableViewCell" id="o2K-OW-3RD" customClass="VehicleTableViewCell" customModule="RepairShop" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="353" height="42.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="o2K-OW-3RD" id="riF-HO-Od1">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="42.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2020 BMW 1-series" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Og1-Bv-yf5">
+                                                    <rect key="frame" x="20" y="11.000000000000002" width="313" height="20.666666666666671"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Og1-Bv-yf5" secondAttribute="bottom" id="a3f-cR-BlX"/>
+                                                <constraint firstItem="Og1-Bv-yf5" firstAttribute="leading" secondItem="riF-HO-Od1" secondAttribute="leadingMargin" id="qSv-2L-NcZ"/>
+                                                <constraint firstItem="Og1-Bv-yf5" firstAttribute="top" secondItem="riF-HO-Od1" secondAttribute="topMargin" id="tH7-uX-nTM"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Og1-Bv-yf5" secondAttribute="trailing" id="xKl-q2-dGa"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="titleLabel" destination="Og1-Bv-yf5" id="cbq-Z3-6iJ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Y6W-OH-hqX" id="5ye-IK-2Vp"/>
+                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="LSN-6u-UUA"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LI1-gA-tJc">
+                                <rect key="frame" x="326" y="97.666666666666671" width="47" height="34.333333333333329"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system"/>
+                                <connections>
+                                    <action selector="onAddVehiclePressed" destination="Y6W-OH-hqX" eventType="touchUpInside" id="sKO-bz-Ygo"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="xca-M7-ZP0" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="1Eq-Kf-agg"/>
+                            <constraint firstItem="x2L-XC-GNo" firstAttribute="top" secondItem="xca-M7-ZP0" secondAttribute="bottom" constant="40" id="M1O-Rv-ZgQ"/>
+                            <constraint firstItem="xca-M7-ZP0" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="QwJ-Bk-433"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="x2L-XC-GNo" secondAttribute="trailing" constant="20" id="Yjz-Hl-09K"/>
+                            <constraint firstItem="x2L-XC-GNo" firstAttribute="top" secondItem="LI1-gA-tJc" secondAttribute="bottom" constant="8" id="ZAL-r0-Lwq"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="LI1-gA-tJc" secondAttribute="trailing" constant="20" id="anx-m3-Dko"/>
+                            <constraint firstItem="x2L-XC-GNo" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="eXh-gy-Mc1"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="x2L-XC-GNo" secondAttribute="bottom" constant="20" id="kVI-cl-AdU"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="x2L-XC-GNo" id="esx-TQ-ljh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="-2"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="plus" catalog="system" width="128" height="113"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

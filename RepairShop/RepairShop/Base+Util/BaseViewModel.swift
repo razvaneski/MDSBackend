@@ -18,4 +18,8 @@ class BaseViewModel<T> {
     let stateSubject = PublishSubject<ViewModelState>()
     let errorSubject = PublishSubject<Error>()
     let disposeBag = DisposeBag()
+    
+    var currentUserInfo: UserInfo {
+        return UserService.shared.currentUserInfo
+    }
 }

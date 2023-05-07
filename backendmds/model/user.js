@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
   last_name: { type: String, default: null },
   username: { type: String, unique: true },
   password: { type: String },
-  user_type: { type: String, default: "user" },
+  user_type: { type: String, default: "user" }, // can be user or repairshop
   token: { type: String },
 });
 

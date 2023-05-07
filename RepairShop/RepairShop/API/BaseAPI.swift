@@ -51,6 +51,8 @@ class BaseAPI {
                             }
                             let result = try responseProcessor(try JSON(data: data.data!))
                             observer(.success(result))
+                        } else if data.response?.statusCode == 416 {
+                            throw ApplicationError.message(str: String(data: data.data!, encoding: .utf8)!)
                         } else {
                             throw NetworkError.httpErrorCode(code: data.response?.statusCode ?? 500)
                         }

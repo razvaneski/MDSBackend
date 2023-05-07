@@ -12,6 +12,11 @@ class HomeController: BaseController {
     private let viewModel = HomeViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // FIXME: remove this (testing without autologin)
+        let localStorage = LocalStorage()
+        localStorage.setString("", key: .userToken)
+        
         bindVM()
         
         viewModel.getUserInfo()
@@ -40,12 +45,22 @@ class HomeController: BaseController {
         viewModel.eventSubject
             .asObservable()
             .observe(on: MainScheduler.instance)
-            .subscribe { [weak self] event in // TODO: go to next screensa
+            .subscribe { [weak self] event in
+                guard let self else { return }
                 switch event {
                 case .goToLogin:
-                    break
+                    let vc = instantiateViewController(ofType: LoginController.self, inStoryboard: .Main)
+                    self.navigationController?.pushViewController(vc, animated: true)
                 case .goToMainMenu:
-                    break
+                    switch self.viewModel.currentUserInfo.userType {
+                    case .user:
+                        let vc = instantiateViewController(ofType: UserMainMenu.self, inStoryboard: .Main)
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    case .repairShop:
+                        break // TODO
+                    case .admin:
+                        break // TODO
+                    }
                 }
             }.disposed(by: disposeBag)
     }
