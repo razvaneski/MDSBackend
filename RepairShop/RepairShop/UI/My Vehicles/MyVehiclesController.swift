@@ -17,6 +17,7 @@ class VehicleTableViewCell: UITableViewCell {
 }
 
 class MyVehiclesController: BaseController {
+    @IBOutlet weak private var emptyStateLabel: UILabel!
     @IBOutlet weak private var tableView: UITableView!
     
     private let viewModel = MyVehiclesViewModel()
@@ -37,7 +38,14 @@ class MyVehiclesController: BaseController {
         viewModel.vehicles
             .asObservable()
             .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] _ in
+            .subscribe(onNext: { [weak self] vehicles in
+                if vehicles?.count ?? 0 == 0 {
+                    self?.tableView.isHidden = true
+                    self?.emptyStateLabel.isHidden = false
+                } else {
+                    self?.tableView.isHidden = false
+                    self?.emptyStateLabel.isHidden = true
+                }
                 self?.tableView.reloadData()
             }).disposed(by: disposeBag)
         

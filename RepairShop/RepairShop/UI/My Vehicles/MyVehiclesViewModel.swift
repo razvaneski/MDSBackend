@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 enum MyVehiclesViewModelEvent {
-    
+    case refr
 }
 
 class MyVehiclesViewModel: BaseViewModel<MyVehiclesViewModelEvent> {

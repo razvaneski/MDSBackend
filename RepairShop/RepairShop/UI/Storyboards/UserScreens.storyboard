@@ -66,21 +66,37 @@
                                     <action selector="onAddVehiclePressed" destination="Y6W-OH-hqX" eventType="touchUpInside" id="sKO-bz-Ygo"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add a vehicle using the button above" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="06c-6N-GNi">
+                                <rect key="frame" x="20" y="416" width="353" height="20.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="xca-M7-ZP0" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="1Eq-Kf-agg"/>
+                            <constraint firstItem="06c-6N-GNi" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="Ezl-s8-5HJ"/>
                             <constraint firstItem="x2L-XC-GNo" firstAttribute="top" secondItem="xca-M7-ZP0" secondAttribute="bottom" constant="40" id="M1O-Rv-ZgQ"/>
                             <constraint firstItem="xca-M7-ZP0" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="QwJ-Bk-433"/>
+                            <constraint firstItem="06c-6N-GNi" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="Xrl-Dz-diQ"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="x2L-XC-GNo" secondAttribute="trailing" constant="20" id="Yjz-Hl-09K"/>
                             <constraint firstItem="x2L-XC-GNo" firstAttribute="top" secondItem="LI1-gA-tJc" secondAttribute="bottom" constant="8" id="ZAL-r0-Lwq"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="LI1-gA-tJc" secondAttribute="trailing" constant="20" id="anx-m3-Dko"/>
                             <constraint firstItem="x2L-XC-GNo" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="eXh-gy-Mc1"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="06c-6N-GNi" secondAttribute="trailing" constant="20" id="f4I-hp-Vxe"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="x2L-XC-GNo" secondAttribute="bottom" constant="20" id="kVI-cl-AdU"/>
+                            <constraint firstItem="06c-6N-GNi" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="kgd-HD-RbA"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="06c-6N-GNi"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
+                        <outlet property="emptyStateLabel" destination="06c-6N-GNi" id="84b-29-ss9"/>
                         <outlet property="tableView" destination="x2L-XC-GNo" id="esx-TQ-ljh"/>
                     </connections>
                 </viewController>
