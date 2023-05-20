@@ -65,6 +65,16 @@ app.post("/register", async (req, res) => {
       );
       // save user token
       user.token = token;
+
+      if (user_type.toLowerCase() === "repairshop") {
+        const { repairshop_name, repairshop_address, repairshop_phone, repairshop_email, repairshop_website } = req.body;
+        user.repairshop_name = repairshop_name;
+        user.repairshop_address = repairshop_address;
+        user.repairshop_phone = repairshop_phone;
+        user.repairshop_email = repairshop_email;
+        user.repairshop_website = repairshop_website;
+      }
+
       await user.save();
       // return new user
       res.status(201).json(user);
@@ -256,5 +266,124 @@ app.post("/deletevehicle", async (req, res) => {
     }
   }
 });
+
+app.get("/getuserappointments", async (req, res) => {
+  const { token } = req.headers;
+  const userId = getUserIdFromToken(token);
+  if (!userId) {
+    res.status(416).send("Invalid token");
+  } else {
+    const appointments = await Appointment.find({ user_id: userId });
+    res.status(200).json(appointments);
+  }
+});
+
+app.get("/getrepairshopappointments", async (req, res) => {
+  const { token } = req.headers;
+  const userId = getUserIdFromToken(token);
+  if (!userId) {
+    res.status(416).send("Invalid token");
+  } else {
+    const appointments = await Appointment.find({ repairshop_id: userId });
+    res.status(200).json(appointments);
+  }
+});
+
+app.post("/addappointment", async (req, res) => {
+  const { token } = req.headers;
+  const userId = getUserIdFromToken(token);
+  if (!userId) {
+    res.status(416).send("Invalid token");
+  } else {
+    const { vehicle_id, repairshop_id, appointment_date } = req.body;
+    // cast appointment_date to Date object
+    const date = new Date(appointment_date);
+    const appointment = await Appointment.create({
+      vehicle_id,
+      repairshop_id,
+      appointment_date: date,
+      user_id: userId,
+    });
+    await appointment.save();
+    res.status(201).json(appointment);
+  }
+});
+
+app.post("/updateappointmentstatus", async (req, res) => {
+  const { token } = req.headers;
+  const userId = getUserIdFromToken(token);
+  const { id } = req.query;
+  if (!userId) {
+    res.status(416).send("Invalid token");
+  } else {
+    const appointment = await Appointment.findById(id);
+    if (!appointment) {
+      res.status(416).send("No appointment found");
+    } else {
+      if (appointment.repairshop_id == userId) {
+        const { appointment_status } = req.body;
+        appointment.appointment_status = appointment_status;
+        await appointment.save();
+        res.status(200).json(appointment);
+      } else {
+        res.status(416).send("Invalid token");
+      }
+    }
+  }
+});
+
+app.post("/deleteappointment", async (req, res) => {
+  const { token } = req.headers;
+  const userId = getUserIdFromToken(token);
+  const { id } = req.query;
+  if (!userId) {
+    res.status(416).send("Invalid token");
+  } else {
+    const appointment = Appointment.findById(id);
+    if (!appointment) {
+      res.status(416).send("No appointment found");
+    } else {
+      if (appointment.user_id == userId) {
+        await Appointment.findByIdAndDelete(id);
+        res.status(200).send("Appointment deleted");
+      } else {
+        res.status(416).send("Invalid token");
+      }
+    }
+  }
+});
+
+app.get("/getrepairshops", async (req, res) => {
+  const { token } = req.headers;
+  const userId = getUserIdFromToken(token);
+  if (!userId) {
+    res.status(416).send("Invalid token");
+  } else {
+    const repairshops = await User.find({ user_type: "repairshop" });
+    res.status(200).json(repairshops);
+  }
+});
+
+app.get("/getrepairshop", async (req, res) => {
+  const { token } = req.headers;
+  const { id } = req.query;
+  const userId = getUserIdFromToken(token);
+  if (!userId) {
+    res.status(416).send("Invalid token");
+  } else {
+    const repairshop = await User.findById(id);
+    if (!repairshop) {
+      res.status(416).send("No repairshop found");
+    } else {
+      if (repairshop.user_type === "repairshop") {
+        res.status(200).json(repairshop);
+      } else {
+        res.status(416).send("No repairshop found");
+      }
+    }
+  }
+});
+
+
 
 module.exports = app;
