@@ -10,6 +10,7 @@ app.use(express.json());
 
 const User = require("./model/user");
 const Vehicle = require("./model/vehicle");
+const Appointment = require("./model/appointment");
 const { json } = require("express");
 
 function getUserIdFromToken(token) {
@@ -267,7 +268,7 @@ app.post("/deletevehicle", async (req, res) => {
   }
 });
 
-app.get("/getuserappointments", async (req, res) => {
+app.get("/getuserappointments", async (req, res) => { // checked
   const { token } = req.headers;
   const userId = getUserIdFromToken(token);
   if (!userId) {
@@ -353,7 +354,7 @@ app.post("/deleteappointment", async (req, res) => {
   }
 });
 
-app.get("/getrepairshops", async (req, res) => {
+app.get("/getrepairshops", async (req, res) => { // checked
   const { token } = req.headers;
   const userId = getUserIdFromToken(token);
   if (!userId) {
@@ -364,7 +365,7 @@ app.get("/getrepairshops", async (req, res) => {
   }
 });
 
-app.get("/getrepairshop", async (req, res) => {
+app.get("/getrepairshop", async (req, res) => { // checked
   const { token } = req.headers;
   const { id } = req.query;
   const userId = getUserIdFromToken(token);
