@@ -275,7 +275,16 @@ app.get("/getuserappointments", async (req, res) => { // checked
     res.status(416).send("Invalid token");
   } else {
     const appointments = await Appointment.find({ user_id: userId });
-    res.status(200).json(appointments);
+    var response = [];
+    // wait for all promises to resolve
+    await Promise.all(appointments.map(async (appointment) => {
+        response.push({
+          appointment: appointment,
+          vehicle: await Vehicle.findById(appointment.vehicle_id),
+          repairshop: await User.findById(appointment.repairshop_id),
+        });
+    }));
+    res.status(200).json(response);
   }
 });
 
@@ -286,7 +295,16 @@ app.get("/getrepairshopappointments", async (req, res) => {
     res.status(416).send("Invalid token");
   } else {
     const appointments = await Appointment.find({ repairshop_id: userId });
-    res.status(200).json(appointments);
+    var response = [];
+    // wait for all promises to resolve
+    await Promise.all(appointments.map(async (appointment) => {
+        response.push({
+          appointment: appointment,
+          vehicle: await Vehicle.findById(appointment.vehicle_id),
+          repairshop: await User.findById(appointment.repairshop_id),
+        });
+    }));
+    res.status(200).json(response);
   }
 });
 
@@ -299,6 +317,10 @@ app.post("/addappointment", async (req, res) => {
     const { vehicle_id, repairshop_id, appointment_date } = req.body;
     // cast appointment_date to Date object
     const date = new Date(appointment_date);
+    // check if date is valid
+    if (date == "Invalid Date") {
+      res.status(416).send("Invalid date");
+    }
     const appointment = await Appointment.create({
       vehicle_id,
       repairshop_id,
@@ -321,7 +343,7 @@ app.post("/updateappointmentstatus", async (req, res) => {
     if (!appointment) {
       res.status(416).send("No appointment found");
     } else {
-      if (appointment.repairshop_id == userId) {
+      if (appointment.repairshop_id == userId || appointment.user_id == userId) {
         const { appointment_status } = req.body;
         appointment.appointment_status = appointment_status;
         await appointment.save();

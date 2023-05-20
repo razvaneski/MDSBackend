@@ -17,15 +17,10 @@ enum ApplicationError: Error {
 class UserService: BaseService {
     static let shared = UserService()
     
-    private let localStorage = LocalStorage()
-    
     private override init() {
         super.init()
     }
     
-    private var token: String {
-        return localStorage.getString(key: .userToken)
-    }
     
     var currentUserInfo: UserInfo!
     

@@ -18,4 +18,9 @@ class UserMainMenu: BaseController {
         let vc = instantiateViewController(ofType: MyVehiclesController.self, inStoryboard: .UserScreens)
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    @IBAction private func onMyAppointmentsPressed() {
+        let vc = instantiateViewController(ofType: MyAppointmentsController.self, inStoryboard: .UserScreens)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
