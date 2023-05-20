@@ -8,6 +8,7 @@
 import Foundation
 
 struct Vehicle {
+    let id: String
     let vin: String
     let licensePlate: String
     let make: String

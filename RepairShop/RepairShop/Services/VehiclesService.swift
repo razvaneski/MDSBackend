@@ -17,12 +17,6 @@ class VehiclesService: BaseService {
         super.init()
     }
     
-    private let localStorage = LocalStorage()
-    
-    private var token: String {
-        return localStorage.getString(key: .userToken)
-    }
-    
     func getVehicles() -> Single<[Vehicle]> {
         return VehiclesAPI.shared.getVehicles(token: token)
     }
@@ -36,5 +30,17 @@ class VehiclesService: BaseService {
             model: model,
             year: year
         )
+    }
+    
+    func getVehicle(id: String) -> Single<Vehicle> {
+        return VehiclesAPI.shared.getVehicle(token: token, id: id)
+    }
+    
+    func updateVehicle(id: String, make: String, model: String, year: Int, vin: String, licensePlate: String) -> Completable {
+        return VehiclesAPI.shared.updateVehicle(token: token, id: id, make: make, model: model, year: year, vin: vin, licensePlate: licensePlate)
+    }
+    
+    func deleteVehicle(id: String) -> Completable {
+        return VehiclesAPI.shared.deleteVehicle(token: token, id: id)
     }
 }

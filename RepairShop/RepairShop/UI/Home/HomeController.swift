@@ -13,9 +13,10 @@ class HomeController: BaseController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // FIXME: remove this (testing without autologin)
+        #if DEBUG
         let localStorage = LocalStorage()
         localStorage.setString("", key: .userToken)
+        #endif
         
         bindVM()
         

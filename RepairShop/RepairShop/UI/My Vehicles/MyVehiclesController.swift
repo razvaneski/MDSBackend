@@ -27,12 +27,21 @@ class MyVehiclesController: BaseController {
         bindVM()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.getVehicles()
+    }
+    
     private func bindVM() {
         viewModel.eventSubject
             .asObservable()
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] event in
-                
+                switch event {
+                case .deleteSuccess:
+                    self?.showSuccessMessage("Deleted successfully")
+                    self?.viewModel.getVehicles()
+                }
             }).disposed(by: disposeBag)
         
         viewModel.vehicles
@@ -70,7 +79,12 @@ class MyVehiclesController: BaseController {
     }
     
     @IBAction private func onAddVehiclePressed() {
-        
+        let vc = instantiateViewController(ofType: AddVehicleController.self, inStoryboard: .UserScreens)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction private func onBackPressed() {
+        self.navigationController?.popViewController(animated: true)
     }
 }
 
@@ -85,5 +99,13 @@ extension MyVehiclesController: UITableViewDelegate, UITableViewDataSource {
         let title = "\(vehicle.year) \(vehicle.make) \(vehicle.model)"
         cell.configure(title: title)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vehicleId = viewModel.vehicles.value![indexPath.row].id
+        let vc = instantiateViewController(ofType: VehicleDetailsController.self, inStoryboard: .UserScreens) {
+            $0.configure(vehicleId: vehicleId)
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

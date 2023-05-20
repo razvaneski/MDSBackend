@@ -3,4 +3,54 @@
    uuid = "F393E349-F24C-4960-9442-0A732C7B94EC"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B516C045-8FC0-4CBF-8C04-A1AFBF9FF203"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RepairShop/Base+Util/BaseController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "handleError(error:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B516C045-8FC0-4CBF-8C04-A1AFBF9FF203 - 8c4ec63e7cc3a94b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RepairShop.BaseController.handleError(error: Swift.Error) -&gt; ()"
+                  moduleName = "RepairShop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/razvan/Documents/Proiecte/MDS/MDSBackend/RepairShop/RepairShop/Base+Util/BaseController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "1124">
+               </Location>
+               <Location
+                  uuid = "B516C045-8FC0-4CBF-8C04-A1AFBF9FF203 - 87cd14436a89fb93"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[1] = Dead&gt; of RepairShop.BaseController.handleError(error: Swift.Error) -&gt; ()"
+                  moduleName = "RepairShop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/razvan/Documents/Proiecte/MDS/MDSBackend/RepairShop/RepairShop/Base+Util/BaseController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "464">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

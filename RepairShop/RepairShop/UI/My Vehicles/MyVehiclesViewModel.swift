@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 enum MyVehiclesViewModelEvent {
-    case refr
+    case deleteSuccess
 }
 
 class MyVehiclesViewModel: BaseViewModel<MyVehiclesViewModelEvent> {
@@ -31,5 +31,18 @@ class MyVehiclesViewModel: BaseViewModel<MyVehiclesViewModelEvent> {
                 self?.stateSubject.onNext(.idle)
                 self?.errorSubject.onNext(error)
             }).disposed(by: disposeBag)
+    }
+    
+    func deleteVehicle(id: String) {
+        stateSubject.onNext(.loading)
+        VehiclesService.shared.deleteVehicle(id: id)
+            .subscribe { [weak self] in
+                self?.stateSubject.onNext(.idle)
+                self?.eventSubject.onNext(.deleteSuccess)
+            } onError: { [weak self] error in
+                self?.stateSubject.onNext(.idle)
+                self?.eventSubject.onNext(.deleteSuccess)
+            }.disposed(by: disposeBag)
+
     }
 }

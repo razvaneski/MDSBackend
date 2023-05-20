@@ -69,4 +69,16 @@ class BaseController: UIViewController {
         (view.backgroundView as? CornerRoundingView)?.cornerRadius = 10
         SwiftMessages.show(view: view)
     }
+    
+    func showSuccessMessage(_ string: String) {
+        let view = MessageView.viewFromNib(layout: .cardView)
+        view.configureTheme(.success)
+        view.configureDropShadow()
+        
+        view.configureContent(title: "Success!", body: string)
+        view.button?.isHidden = true
+        
+        (view.backgroundView as? CornerRoundingView)?.cornerRadius = 10
+        SwiftMessages.show(view: view)
+    }
 }
