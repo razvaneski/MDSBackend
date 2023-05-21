@@ -14,6 +14,7 @@ enum UserType: String {
 }
 
 struct UserInfo {
+    let id: String
     let firstName: String
     let lastName: String
     let userName: String

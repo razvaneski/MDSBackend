@@ -43,6 +43,9 @@ class BaseController: UIViewController {
                 view.configureContent(title: "Error!", body: "Invalid token")
             case .message(str: let message):
                 view.configureContent(title: "Error!", body: message)
+            case .warning(message: let message):
+                view.configureContent(title: "Warning!", body: message)
+                view.configureTheme(.warning)
             }
         } else if let networkError = error as? NetworkError {
             switch networkError {

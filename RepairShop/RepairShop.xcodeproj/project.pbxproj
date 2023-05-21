@@ -18,6 +18,15 @@
 		E5587F832A190E9100374442 /* MyAppointmentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5587F822A190E9100374442 /* MyAppointmentsController.swift */; };
 		E5587F852A190EA700374442 /* MyAppointmentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5587F842A190EA700374442 /* MyAppointmentsViewModel.swift */; };
 		E5587F872A1919C600374442 /* AppointmentDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5587F862A1919C600374442 /* AppointmentDetailsController.swift */; };
+		E5587F892A1A204E00374442 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5587F882A1A204E00374442 /* Conversation.swift */; };
+		E5587F8B2A1A20C000374442 /* ConversationsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5587F8A2A1A20C000374442 /* ConversationsAPI.swift */; };
+		E5587F8D2A1A22D700374442 /* ConversationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5587F8C2A1A22D700374442 /* ConversationsService.swift */; };
+		E5587F902A1A283200374442 /* ConversationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5587F8F2A1A283200374442 /* ConversationsController.swift */; };
+		E5587F922A1A2E9D00374442 /* ConversationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5587F912A1A2E9D00374442 /* ConversationsViewModel.swift */; };
+		E5587F942A1A38C000374442 /* ConversationMessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5587F932A1A38C000374442 /* ConversationMessagesController.swift */; };
+		E5587F962A1A3A9500374442 /* ConversationMessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5587F952A1A3A9500374442 /* ConversationMessagesViewModel.swift */; };
+		E5587F982A1A3F1000374442 /* UIView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5587F972A1A3F1000374442 /* UIView+Utils.swift */; };
+		E5587F9E2A1A40B100374442 /* RepairshopMainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5587F9D2A1A40B100374442 /* RepairshopMainMenuController.swift */; };
 		E5A47BE229F6CDA5004C5294 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A47BE129F6CDA5004C5294 /* AppDelegate.swift */; };
 		E5A47BE629F6CDA5004C5294 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A47BE529F6CDA5004C5294 /* HomeController.swift */; };
 		E5A47BE929F6CDA5004C5294 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5A47BE729F6CDA5004C5294 /* Main.storyboard */; };
@@ -60,6 +69,15 @@
 		E5587F822A190E9100374442 /* MyAppointmentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppointmentsController.swift; sourceTree = "<group>"; };
 		E5587F842A190EA700374442 /* MyAppointmentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppointmentsViewModel.swift; sourceTree = "<group>"; };
 		E5587F862A1919C600374442 /* AppointmentDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailsController.swift; sourceTree = "<group>"; };
+		E5587F882A1A204E00374442 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
+		E5587F8A2A1A20C000374442 /* ConversationsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsAPI.swift; sourceTree = "<group>"; };
+		E5587F8C2A1A22D700374442 /* ConversationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsService.swift; sourceTree = "<group>"; };
+		E5587F8F2A1A283200374442 /* ConversationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsController.swift; sourceTree = "<group>"; };
+		E5587F912A1A2E9D00374442 /* ConversationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsViewModel.swift; sourceTree = "<group>"; };
+		E5587F932A1A38C000374442 /* ConversationMessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationMessagesController.swift; sourceTree = "<group>"; };
+		E5587F952A1A3A9500374442 /* ConversationMessagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationMessagesViewModel.swift; sourceTree = "<group>"; };
+		E5587F972A1A3F1000374442 /* UIView+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Utils.swift"; sourceTree = "<group>"; };
+		E5587F9D2A1A40B100374442 /* RepairshopMainMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairshopMainMenuController.swift; sourceTree = "<group>"; };
 		E5A47BDE29F6CDA5004C5294 /* RepairShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RepairShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5A47BE129F6CDA5004C5294 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5A47BE529F6CDA5004C5294 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -131,6 +149,53 @@
 			path = "My Appointments";
 			sourceTree = "<group>";
 		};
+		E5587F8E2A1A282600374442 /* Conversations */ = {
+			isa = PBXGroup;
+			children = (
+				E5587F8F2A1A283200374442 /* ConversationsController.swift */,
+				E5587F912A1A2E9D00374442 /* ConversationsViewModel.swift */,
+				E5587F932A1A38C000374442 /* ConversationMessagesController.swift */,
+				E5587F952A1A3A9500374442 /* ConversationMessagesViewModel.swift */,
+			);
+			path = Conversations;
+			sourceTree = "<group>";
+		};
+		E5587F992A1A404F00374442 /* User Screens */ = {
+			isa = PBXGroup;
+			children = (
+				E5ECF7282A07D26C0065A541 /* My Vehicles */,
+				E5587F812A190E7B00374442 /* My Appointments */,
+			);
+			path = "User Screens";
+			sourceTree = "<group>";
+		};
+		E5587F9A2A1A406100374442 /* Common Screens */ = {
+			isa = PBXGroup;
+			children = (
+				E5ECF71C2A07C3100065A541 /* Main Menu */,
+				E5ECF7132A06ED710065A541 /* Auth */,
+				E5A47BF529F6CED5004C5294 /* Home */,
+				E5587F8E2A1A282600374442 /* Conversations */,
+			);
+			path = "Common Screens";
+			sourceTree = "<group>";
+		};
+		E5587F9B2A1A406B00374442 /* RepairshopScreens */ = {
+			isa = PBXGroup;
+			children = (
+				E5587F9C2A1A40A300374442 /* Main Menu */,
+			);
+			path = RepairshopScreens;
+			sourceTree = "<group>";
+		};
+		E5587F9C2A1A40A300374442 /* Main Menu */ = {
+			isa = PBXGroup;
+			children = (
+				E5587F9D2A1A40B100374442 /* RepairshopMainMenuController.swift */,
+			);
+			path = "Main Menu";
+			sourceTree = "<group>";
+		};
 		E5A47BD529F6CDA5004C5294 = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +247,7 @@
 				E5ECF70C2A0676640065A541 /* BaseService.swift */,
 				E5ECF70E2A0683200065A541 /* Storage.swift */,
 				E5ECF7102A0684790065A541 /* Instantiation.swift */,
+				E5587F972A1A3F1000374442 /* UIView+Utils.swift */,
 			);
 			path = "Base+Util";
 			sourceTree = "<group>";
@@ -193,6 +259,7 @@
 				E5ECF7042A0674750065A541 /* UserAPI.swift */,
 				E5ECF7242A07CECA0065A541 /* VehiclesAPI.swift */,
 				E5587F7D2A190B3700374442 /* AppointmentsAPI.swift */,
+				E5587F8A2A1A20C000374442 /* ConversationsAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -204,6 +271,7 @@
 				E5ECF7262A07CF0C0065A541 /* Vehicle.swift */,
 				E5587F792A190A4300374442 /* Appointment.swift */,
 				E5587F7B2A190A5A00374442 /* Repairshop.swift */,
+				E5587F882A1A204E00374442 /* Conversation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -214,6 +282,7 @@
 				E5ECF70A2A06765C0065A541 /* UserService.swift */,
 				E5ECF7222A07CEA70065A541 /* VehiclesService.swift */,
 				E5587F7F2A190DB400374442 /* AppointmentsService.swift */,
+				E5587F8C2A1A22D700374442 /* ConversationsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -221,12 +290,10 @@
 		E5ECF7122A06ED630065A541 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				E5587F812A190E7B00374442 /* My Appointments */,
-				E5ECF7282A07D26C0065A541 /* My Vehicles */,
+				E5587F9B2A1A406B00374442 /* RepairshopScreens */,
+				E5587F9A2A1A406100374442 /* Common Screens */,
+				E5587F992A1A404F00374442 /* User Screens */,
 				E5ECF71D2A07CE390065A541 /* Storyboards */,
-				E5ECF71C2A07C3100065A541 /* Main Menu */,
-				E5ECF7132A06ED710065A541 /* Auth */,
-				E5A47BF529F6CED5004C5294 /* Home */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -388,10 +455,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5587F8D2A1A22D700374442 /* ConversationsService.swift in Sources */,
 				E5A47BE629F6CDA5004C5294 /* HomeController.swift in Sources */,
+				E5587F8B2A1A20C000374442 /* ConversationsAPI.swift in Sources */,
 				E5ECF71B2A06FBF70065A541 /* SignUpViewModel.swift in Sources */,
 				E5ECF7052A0674750065A541 /* UserAPI.swift in Sources */,
 				E5ECF6FE2A06674F0065A541 /* Variable.swift in Sources */,
+				E5587F9E2A1A40B100374442 /* RepairshopMainMenuController.swift in Sources */,
 				E5587F832A190E9100374442 /* MyAppointmentsController.swift in Sources */,
 				E5A47BE229F6CDA5004C5294 /* AppDelegate.swift in Sources */,
 				E5ECF7252A07CECA0065A541 /* VehiclesAPI.swift in Sources */,
@@ -399,11 +469,14 @@
 				E5587F802A190DB400374442 /* AppointmentsService.swift in Sources */,
 				E5ECF70F2A0683200065A541 /* Storage.swift in Sources */,
 				E5ECF72C2A07D4580065A541 /* MyVehiclesViewModel.swift in Sources */,
+				E5587F962A1A3A9500374442 /* ConversationMessagesViewModel.swift in Sources */,
 				E5ECF7082A06750B0065A541 /* User.swift in Sources */,
 				E5587F852A190EA700374442 /* MyAppointmentsViewModel.swift in Sources */,
+				E5587F982A1A3F1000374442 /* UIView+Utils.swift in Sources */,
 				E5ECF70B2A06765C0065A541 /* UserService.swift in Sources */,
 				E5587F7E2A190B3700374442 /* AppointmentsAPI.swift in Sources */,
 				E5587F742A18DF5E00374442 /* VehicleDetailsController.swift in Sources */,
+				E5587F942A1A38C000374442 /* ConversationMessagesController.swift in Sources */,
 				E5587F7A2A190A4300374442 /* Appointment.swift in Sources */,
 				E5ECF7172A06EFAF0065A541 /* LoginViewModel.swift in Sources */,
 				E5ECF6FA2A0665980065A541 /* BaseController.swift in Sources */,
@@ -416,9 +489,12 @@
 				E5ECF7022A0669530065A541 /* BaseAPI.swift in Sources */,
 				E5ECF6FC2A0666EB0065A541 /* HomeViewModel.swift in Sources */,
 				E5ECF70D2A0676640065A541 /* BaseService.swift in Sources */,
+				E5587F892A1A204E00374442 /* Conversation.swift in Sources */,
 				E5ECF7232A07CEA70065A541 /* VehiclesService.swift in Sources */,
+				E5587F902A1A283200374442 /* ConversationsController.swift in Sources */,
 				E5587F7C2A190A5A00374442 /* Repairshop.swift in Sources */,
 				E5ECF7152A06EF0A0065A541 /* LoginController.swift in Sources */,
+				E5587F922A1A2E9D00374442 /* ConversationsViewModel.swift in Sources */,
 				E5ECF72A2A07D27A0065A541 /* MyVehiclesController.swift in Sources */,
 				E5ECF7272A07CF0C0065A541 /* Vehicle.swift in Sources */,
 			);

@@ -12,6 +12,7 @@ import SwiftyJSON
 enum ApplicationError: Error {
     case invalidToken
     case message(str: String)
+    case warning(message: String)
 }
 
 class UserService: BaseService {
@@ -33,7 +34,7 @@ class UserService: BaseService {
     }
     
     func getUserInfo() -> Completable {
-        if token.isEmpty { return Completable.error(ApplicationError.invalidToken) }
+        if token.isEmpty { return Completable.error(ApplicationError.warning(message: "Please log in")) }
         return UserAPI.shared.getUserInfo(token: token)
             .do { [weak self] userInfo in
                 self?.currentUserInfo = userInfo
@@ -52,5 +53,9 @@ class UserService: BaseService {
             self?.currentUserInfo = userInfo
             self?.localStorage.setString(userInfo.token, key: .userToken)
         }.asCompletable()
+    }
+    
+    func logout() {
+        localStorage.setString("", key: .userToken)
     }
 }

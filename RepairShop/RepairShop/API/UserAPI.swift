@@ -22,6 +22,7 @@ class UserAPI: BaseAPI {
         
         return call(endpoint: "login", method: .post, params: params) { json in
             return UserInfo(
+                id: json["_id"].stringValue,
                 firstName: json["first_name"].stringValue,
                 lastName: json["last_name"].stringValue,
                 userName: json["username"].stringValue,
@@ -36,6 +37,7 @@ class UserAPI: BaseAPI {
         
         return call(endpoint: "getuser", method: .get, headers: headers) { json in
             return UserInfo(
+                id: json["_id"].stringValue,
                 firstName: json["first_name"].stringValue,
                 lastName: json["last_name"].stringValue,
                 userName: json["username"].stringValue,
@@ -56,6 +58,7 @@ class UserAPI: BaseAPI {
         
         return call(endpoint: "register", method: .post, params: params) { json in
             return UserInfo(
+                id: json["_id"].stringValue,
                 firstName: json["first_name"].stringValue,
                 lastName: json["last_name"].stringValue,
                 userName: json["username"].stringValue,

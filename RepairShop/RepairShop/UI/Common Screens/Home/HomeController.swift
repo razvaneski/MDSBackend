@@ -58,7 +58,8 @@ class HomeController: BaseController {
                         let vc = instantiateViewController(ofType: UserMainMenu.self, inStoryboard: .Main)
                         self.navigationController?.pushViewController(vc, animated: true)
                     case .repairShop:
-                        break // TODO
+                        let vc = instantiateViewController(ofType: RepairshopMainMenuController.self, inStoryboard: .Main)
+                        self.navigationController?.pushViewController(vc, animated: true)
                     case .admin:
                         break // TODO
                     }

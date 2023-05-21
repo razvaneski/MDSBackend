@@ -31,7 +31,8 @@ class LoginController: BaseController {
                     case .admin:
                         break // TODO
                     case .repairShop:
-                        break // TODO
+                        let vc = instantiateViewController(ofType: RepairshopMainMenuController.self, inStoryboard: .Main)
+                        self.navigationController?.pushViewController(vc, animated: true)
                     case .user:
                         let vc = instantiateViewController(ofType: UserMainMenu.self, inStoryboard: .Main)
                         self.navigationController?.pushViewController(vc, animated: true)
