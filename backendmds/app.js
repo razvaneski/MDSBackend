@@ -11,6 +11,7 @@ app.use(express.json());
 const User = require("./model/user");
 const Vehicle = require("./model/vehicle");
 const Appointment = require("./model/appointment");
+const Conversation = require("./model/conversation");
 const { json } = require("express");
 
 function getUserIdFromToken(token) {
@@ -406,6 +407,86 @@ app.get("/getrepairshop", async (req, res) => { // checked
     }
   }
 });
+
+app.get("/getconversations", async (req, res) => {
+  const { token } = req.headers;
+  const userId = getUserIdFromToken(token);
+  if (!userId) {
+    res.status(416).send("Invalid token");
+  } else {
+    const conversations = await Conversation.find({ $or: [{ user_id: userId }, { repairshop_id: userId }] });
+    res.status(200).json(conversations);
+  }
+});
+
+app.post("/sendmessage", async (req, res) => {
+  const { token } = req.headers;
+  const { receiver_id } = req.query;
+  const { message } = req.body;
+  const userId = getUserIdFromToken(token);
+  if (!userId) {
+    res.status(416).send("Invalid token");
+  } else {
+    const user = await User.findById(userId);
+    if (!user) {
+      res.status(416).send("Invalid token");
+    } else {
+      if (user.user_type === "user") {
+        const conversation = await Conversation.findOne({ user_id: userId, repairshop_id: receiver_id });
+        if (!conversation) {
+          const newConversation = await Conversation.create({
+            user_id: userId,
+            user_name: user.first_name + " " + user.last_name,
+            repairshop_id: receiver_id,
+            repairshop_name: (await User.findById(receiver_id)).repairshop_name,
+            messages: [{
+              user_id: userId,
+              message: message,
+              date: new Date(),
+            }],
+          });
+          await newConversation.save();
+          res.status(200).json(newConversation);
+        } else {
+          conversation.messages.push({
+            user_id: userId,
+            message: message,
+            date: new Date(),
+          });
+          await conversation.save();
+          res.status(200).json(conversation);
+        }
+      } else {
+        const conversation = await Conversation.findOne({ user_id: receiver_id, repairshop_id: userId });
+        if (!conversation) {
+          const newConversation = await Conversation.create({
+            user_id: receiver_id,
+            user_name: (await User.findById(receiver_id)).first_name + " " + (await User.findById(receiver_id)).last_name,
+            repairshop_id: userId,
+            repairshop_name: user.repairshop_name,
+            messages: [{
+              user_id: userId,
+              message: message,
+              date: new Date(),
+            }],
+          });
+          await newConversation.save();
+          res.status(200).json(newConversation);
+        } else {
+          conversation.messages.push({
+            user_id: userId,
+            message: message,
+            date: new Date(),
+          });
+          await conversation.save();
+          res.status(200).json(conversation);
+        }
+      }
+    }
+  }
+});
+
+
 
 
 
