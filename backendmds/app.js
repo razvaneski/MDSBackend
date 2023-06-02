@@ -295,7 +295,7 @@ app.get("/getrepairshopappointments", async (req, res) => {
   if (!userId) {
     res.status(416).send("Invalid token");
   } else {
-    const appointments = await Appointment.find({ repairshop_id: userId });
+    const appointments = (await Appointment.find({ repairshop_id: userId })).filter(appointment => appointment.status != "cancelled");
     var response = [];
     // wait for all promises to resolve
     await Promise.all(appointments.map(async (appointment) => {

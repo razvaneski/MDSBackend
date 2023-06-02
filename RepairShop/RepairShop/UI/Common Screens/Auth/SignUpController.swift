@@ -30,10 +30,8 @@ class SignUpController: BaseController {
             .subscribe { [weak self] event in
                 guard let self else { return }
                 switch event {
-                case .goToMainMenu: // TODO: Go to main menu
+                case .goToMainMenu:
                     switch self.viewModel.currentUserInfo.userType {
-                    case .admin:
-                        break
                     case .repairShop:
                         let vc = instantiateViewController(ofType: RepairshopMainMenuController.self, inStoryboard: .Main)
                         self.navigationController?.pushViewController(vc, animated: true)

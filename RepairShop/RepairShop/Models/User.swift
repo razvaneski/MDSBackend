@@ -10,7 +10,6 @@ import Foundation
 enum UserType: String {
     case user = "user"
     case repairShop = "repairshop"
-    case admin = "admin"
 }
 
 struct UserInfo {

@@ -11,6 +11,7 @@ extension UIStoryboard {
     enum Name: String {
         case Main
         case UserScreens
+        case RepairshopScreens
     }
 }
 

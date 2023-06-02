@@ -14,8 +14,8 @@ class HomeController: BaseController {
         super.viewDidLoad()
         
         #if DEBUG
-        let localStorage = LocalStorage()
-        localStorage.setString("", key: .userToken)
+//        let localStorage = LocalStorage()
+//        localStorage.setString("", key: .userToken)
         #endif
         
         bindVM()
@@ -60,8 +60,6 @@ class HomeController: BaseController {
                     case .repairShop:
                         let vc = instantiateViewController(ofType: RepairshopMainMenuController.self, inStoryboard: .Main)
                         self.navigationController?.pushViewController(vc, animated: true)
-                    case .admin:
-                        break // TODO
                     }
                 }
             }.disposed(by: disposeBag)

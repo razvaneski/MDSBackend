@@ -8,27 +8,39 @@
 import Foundation
 import RxSwift
 
-enum MyAppointmentsViewModelEvent {}
+enum AppointmentsViewModelEvent {}
 
-class MyAppointmentsViewModel: BaseViewModel<MyAppointmentsViewModelEvent> {
+class AppointmentsViewModel: BaseViewModel<AppointmentsViewModelEvent> {
     let appointments = Variable<[Appointment]?>(nil)
     
-    override init() {
+    init(userType: UserType) {
         super.init()
-        getAppointments()
+        getAppointments(userType)
     }
     
-    func getAppointments() {
+    func getAppointments(_ userType: UserType) {
         self.stateSubject.onNext(.loading)
-        AppointmentsService.shared.getUserAppointments()
-            .asObservable()
-            .subscribe { [weak self] appointments in
-                self?.stateSubject.onNext(.idle)
-                self?.appointments.value = appointments.sorted(by: {$0.date < $1.date})
-            } onError: { [weak self] error in
-                self?.stateSubject.onNext(.idle)
-                self?.errorSubject.onNext(error)
-            }.disposed(by: disposeBag)
-
+        switch userType {
+        case .user:
+            AppointmentsService.shared.getUserAppointments()
+                .asObservable()
+                .subscribe { [weak self] appointments in
+                    self?.stateSubject.onNext(.idle)
+                    self?.appointments.value = appointments.sorted(by: {$0.date < $1.date})
+                } onError: { [weak self] error in
+                    self?.stateSubject.onNext(.idle)
+                    self?.errorSubject.onNext(error)
+                }.disposed(by: disposeBag)
+        case .repairShop:
+            AppointmentsService.shared.getRepairshopAppointments()
+                .asObservable()
+                .subscribe { [weak self] appointments in
+                    self?.stateSubject.onNext(.idle)
+                    self?.appointments.value = appointments.sorted(by: {$0.date < $1.date})
+                } onError: { [weak self] error in
+                    self?.stateSubject.onNext(.idle)
+                    self?.errorSubject.onNext(error)
+                }.disposed(by: disposeBag)
+        }
     }
 }

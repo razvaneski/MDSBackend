@@ -303,8 +303,26 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="vGc-qw-Fw2">
-                                <rect key="frame" x="20" y="409" width="353" height="34.333333333333314"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="vGc-qw-Fw2">
+                                <rect key="frame" x="20" y="391.66666666666669" width="353" height="68.666666666666686"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xDa-Lb-uvK">
+                                        <rect key="frame" x="0.0" y="0.0" width="353" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Appointments"/>
+                                        <connections>
+                                            <action selector="onAppointmentsPressed:" destination="Zis-YK-rYo" eventType="touchUpInside" id="WUF-ys-Lak"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7j4-gI-v1S" userLabel="Repairshop Profile">
+                                        <rect key="frame" x="0.0" y="34.333333333333314" width="353" height="34.333333333333343"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Repairshop Profile"/>
+                                        <connections>
+                                            <action selector="onProfilePressed:" destination="Zis-YK-rYo" eventType="touchUpInside" id="qcT-rI-bGC"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rpv-Be-Hv6">
                                 <rect key="frame" x="20" y="95" width="84.666666666666671" height="34.333333333333343"/>

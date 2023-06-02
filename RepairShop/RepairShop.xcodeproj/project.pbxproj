@@ -32,6 +32,7 @@
 		E5A47BE929F6CDA5004C5294 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5A47BE729F6CDA5004C5294 /* Main.storyboard */; };
 		E5A47BEB29F6CDA6004C5294 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5A47BEA29F6CDA6004C5294 /* Assets.xcassets */; };
 		E5A47BEE29F6CDA6004C5294 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5A47BEC29F6CDA6004C5294 /* LaunchScreen.storyboard */; };
+		E5BF4CBD2A2A251F000FC7FA /* AddAppointmentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF4CBC2A2A251F000FC7FA /* AddAppointmentController.swift */; };
 		E5ECF6FA2A0665980065A541 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ECF6F92A0665980065A541 /* BaseController.swift */; };
 		E5ECF6FC2A0666EB0065A541 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ECF6FB2A0666EB0065A541 /* HomeViewModel.swift */; };
 		E5ECF6FE2A06674F0065A541 /* Variable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ECF6FD2A06674F0065A541 /* Variable.swift */; };
@@ -85,6 +86,7 @@
 		E5A47BEA29F6CDA6004C5294 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E5A47BED29F6CDA6004C5294 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E5A47BEF29F6CDA6004C5294 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E5BF4CBC2A2A251F000FC7FA /* AddAppointmentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAppointmentController.swift; sourceTree = "<group>"; };
 		E5ECF6F92A0665980065A541 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		E5ECF6FB2A0666EB0065A541 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		E5ECF6FD2A06674F0065A541 /* Variable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variable.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				E5587F822A190E9100374442 /* MyAppointmentsController.swift */,
 				E5587F842A190EA700374442 /* MyAppointmentsViewModel.swift */,
 				E5587F862A1919C600374442 /* AppointmentDetailsController.swift */,
+				E5BF4CBC2A2A251F000FC7FA /* AddAppointmentController.swift */,
 			);
 			path = "My Appointments";
 			sourceTree = "<group>";
@@ -172,6 +175,7 @@
 		E5587F9A2A1A406100374442 /* Common Screens */ = {
 			isa = PBXGroup;
 			children = (
+				E5BF4CBB2A2A18D9000FC7FA /* Repairshop Profile */,
 				E5ECF71C2A07C3100065A541 /* Main Menu */,
 				E5ECF7132A06ED710065A541 /* Auth */,
 				E5A47BF529F6CED5004C5294 /* Home */,
@@ -236,6 +240,13 @@
 				E5ECF6FB2A0666EB0065A541 /* HomeViewModel.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		E5BF4CBB2A2A18D9000FC7FA /* Repairshop Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Repairshop Profile";
 			sourceTree = "<group>";
 		};
 		E5ECF6F82A06658A0065A541 /* Base+Util */ = {
@@ -466,6 +477,7 @@
 				E5A47BE229F6CDA5004C5294 /* AppDelegate.swift in Sources */,
 				E5ECF7252A07CECA0065A541 /* VehiclesAPI.swift in Sources */,
 				E5ECF7002A0668AB0065A541 /* BaseViewModel.swift in Sources */,
+				E5BF4CBD2A2A251F000FC7FA /* AddAppointmentController.swift in Sources */,
 				E5587F802A190DB400374442 /* AppointmentsService.swift in Sources */,
 				E5ECF70F2A0683200065A541 /* Storage.swift in Sources */,
 				E5ECF72C2A07D4580065A541 /* MyVehiclesViewModel.swift in Sources */,

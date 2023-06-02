@@ -32,11 +32,11 @@ class AppointmentTableViewCell: UITableViewCell {
 class MyAppointmentsController: BaseController {
     @IBOutlet weak private var tableView: UITableView!
     
-    private var viewModel: MyAppointmentsViewModel!
+    private var viewModel: AppointmentsViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.viewModel = MyAppointmentsViewModel()
+        self.viewModel = AppointmentsViewModel(userType: .user)
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -45,7 +45,7 @@ class MyAppointmentsController: BaseController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.getAppointments()
+        viewModel.getAppointments(.user)
     }
     
     private func bindVM() {
@@ -81,7 +81,8 @@ class MyAppointmentsController: BaseController {
     }
     
     @IBAction private func onAddPressed() {
-        // TODO
+        let vc = instantiateViewController(ofType: AddAppointmentController.self, inStoryboard: .UserScreens)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

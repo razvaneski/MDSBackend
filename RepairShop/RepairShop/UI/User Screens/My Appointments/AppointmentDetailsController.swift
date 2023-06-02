@@ -9,16 +9,17 @@ import UIKit
 import RxSwift
 
 enum AppointmentDetailsViewModelEvent {
-    case cancelSuccess
+    case statusChanged(newStatus: Appointment.Status)
 }
 
 class AppointmentDetailsViewModel: BaseViewModel<AppointmentDetailsViewModelEvent> {
-    func cancelAppointment(id: String) {
+    let userInfo = UserService.shared.currentUserInfo
+    func changeAppointmentStatus(id: String, status: Appointment.Status) {
         self.stateSubject.onNext(.loading)
-        AppointmentsService.shared.changeAppointmentStatus(id: id, newStatus: .cancelled)
+        AppointmentsService.shared.changeAppointmentStatus(id: id, newStatus: status)
             .subscribe { [weak self] in
                 self?.stateSubject.onNext(.idle)
-                self?.eventSubject.onNext(.cancelSuccess)
+                self?.eventSubject.onNext(.statusChanged(newStatus: status))
             } onError: { [weak self] error in
                 self?.stateSubject.onNext(.idle)
                 self?.errorSubject.onNext(error)
@@ -54,9 +55,20 @@ class AppointmentDetailsController: BaseController {
             .observe(on: MainScheduler.instance)
             .subscribe { [weak self] event in
                 switch event {
-                case .cancelSuccess:
-                    self?.showSuccessMessage("Appointment cancelled successfully.")
-                    self?.navigationController?.popViewController(animated: true)
+                case .statusChanged(let newStatus):
+                    switch newStatus {
+                    case .cancelled:
+                        self?.showSuccessMessage("Appointment cancelled successfully.")
+                        self?.navigationController?.popViewController(animated: true)
+                    case .confirmed:
+                        self?.showSuccessMessage("Appointment confirmed successfully.")
+                        self?.navigationController?.popViewController(animated: true)
+                    case .declined:
+                        self?.showSuccessMessage("Appointment declined successfully.")
+                        self?.navigationController?.popViewController(animated: true)
+                    default:
+                        break
+                    }
                 }
             }.disposed(by: disposeBag)
         
@@ -105,6 +117,6 @@ class AppointmentDetailsController: BaseController {
     }
     
     @IBAction private func onCancelAppointmentPressed() {
-        self.viewModel.cancelAppointment(id: appointment.id)
+        self.viewModel.changeAppointmentStatus(id: appointment.id, status: .cancelled)
     }
 }

@@ -28,8 +28,6 @@ class LoginController: BaseController {
                 switch event {
                 case .loginSuccess:
                     switch self.viewModel.currentUserInfo.userType {
-                    case .admin:
-                        break // TODO
                     case .repairShop:
                         let vc = instantiateViewController(ofType: RepairshopMainMenuController.self, inStoryboard: .Main)
                         self.navigationController?.pushViewController(vc, animated: true)

@@ -58,4 +58,8 @@ class UserService: BaseService {
     func logout() {
         localStorage.setString("", key: .userToken)
     }
+    
+    func getRepairshops() -> Single<[Repairshop]> {
+        return UserAPI.shared.getRepairShops(token: token)
+    }
 }

@@ -30,4 +30,12 @@ class RepairshopMainMenuController: BaseController {
         viewModel.logout()
         self.navigationController?.setViewControllers([vc], animated: true)
     }
+    
+    @IBAction func onAppointmentsPressed(_ sender: Any) {
+        
+    }
+    
+    @IBAction func onProfilePressed(_ sender: Any) {
+        
+    }
 }
