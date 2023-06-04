@@ -233,7 +233,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="47v-Cp-3t9">
-                                <rect key="frame" x="20" y="391.66666666666669" width="353" height="68.666666666666686"/>
+                                <rect key="frame" x="20" y="374.66666666666669" width="353" height="103"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sa5-Db-3x5">
                                         <rect key="frame" x="0.0" y="0.0" width="353" height="34.333333333333336"/>
@@ -249,6 +249,14 @@
                                         <buttonConfiguration key="configuration" style="plain" title="My Appointments"/>
                                         <connections>
                                             <action selector="onMyAppointmentsPressed" destination="grq-Oa-7G4" eventType="touchUpInside" id="Fgb-C4-8Gk"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gGW-3o-xIB">
+                                        <rect key="frame" x="0.0" y="68.666666666666629" width="353" height="34.333333333333343"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Repairshops"/>
+                                        <connections>
+                                            <action selector="onRepairshopsPressed:" destination="grq-Oa-7G4" eventType="touchUpInside" id="l2n-LK-zsZ"/>
                                         </connections>
                                     </button>
                                 </subviews>

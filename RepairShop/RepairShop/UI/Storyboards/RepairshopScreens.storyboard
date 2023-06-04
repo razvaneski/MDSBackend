@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Repairshop Appointment Details Controller-->
+        <scene sceneID="hCN-aj-o4T">
+            <objects>
+                <viewController storyboardIdentifier="RepairshopAppointmentDetailsController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y2j-HG-0o3" customClass="RepairshopAppointmentDetailsController" customModule="RepairShop" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NVo-XJ-LrQ">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appointment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5HE-jd-uAU">
+                                <rect key="frame" x="147.33333333333334" y="79" width="98.666666666666657" height="20.333333333333329"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RcK-EB-0QZ">
+                                <rect key="frame" x="19.999999999999996" y="95" width="61.666666666666657" height="34.333333333333343"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Back"/>
+                                <connections>
+                                    <action selector="onBackPressed" destination="Y2j-HG-0o3" eventType="touchUpInside" id="aeF-iV-9SX"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Jag-Qh-cjg">
+                                <rect key="frame" x="20" y="383.66666666666669" width="353" height="85"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9qj-eo-mb0">
+                                        <rect key="frame" x="0.0" y="0.0" width="353" height="20.333333333333332"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vehicle" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N7z-Nr-EeX">
+                                        <rect key="frame" x="0.0" y="32.333333333333314" width="353" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uec-7F-QdM">
+                                        <rect key="frame" x="0.0" y="64.666666666666629" width="353" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="cmM-Kd-1je">
+                                <rect key="frame" x="20" y="687" width="353" height="111"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TwB-qg-lEY">
+                                        <rect key="frame" x="0.0" y="0.0" width="353" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Send Message"/>
+                                        <connections>
+                                            <action selector="onSendMessagePressed" destination="Y2j-HG-0o3" eventType="touchUpInside" id="ZRq-0C-Auc"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="av3-gO-geP">
+                                        <rect key="frame" x="0.0" y="38.333333333333371" width="353" height="34.333333333333343"/>
+                                        <color key="tintColor" systemColor="systemGreenColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Confirm Appointment"/>
+                                        <connections>
+                                            <action selector="onConfirmAppointmentPressed" destination="Y2j-HG-0o3" eventType="touchUpInside" id="JvO-b6-h9b"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="awU-S1-Jwg">
+                                        <rect key="frame" x="0.0" y="76.666666666666629" width="353" height="34.333333333333343"/>
+                                        <color key="tintColor" systemColor="systemRedColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Decline Appointment"/>
+                                        <connections>
+                                            <action selector="onDeclineAppointmentPressed" destination="Y2j-HG-0o3" eventType="touchUpInside" id="0IS-Ys-PUo"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="wSe-4Y-uFP"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="5HE-jd-uAU" firstAttribute="top" secondItem="wSe-4Y-uFP" secondAttribute="top" constant="20" id="81C-YJ-kcr"/>
+                            <constraint firstItem="RcK-EB-0QZ" firstAttribute="leading" secondItem="wSe-4Y-uFP" secondAttribute="leading" constant="20" id="HqK-5K-ipc"/>
+                            <constraint firstItem="cmM-Kd-1je" firstAttribute="bottom" secondItem="wSe-4Y-uFP" secondAttribute="bottom" constant="-20" id="OHC-sO-lXz"/>
+                            <constraint firstItem="wSe-4Y-uFP" firstAttribute="trailing" secondItem="cmM-Kd-1je" secondAttribute="trailing" constant="20" id="To4-pY-KKX"/>
+                            <constraint firstItem="wSe-4Y-uFP" firstAttribute="trailing" secondItem="Jag-Qh-cjg" secondAttribute="trailing" constant="20" id="cUu-oK-FFy"/>
+                            <constraint firstItem="cmM-Kd-1je" firstAttribute="leading" secondItem="wSe-4Y-uFP" secondAttribute="leading" constant="20" id="fcv-94-vw2"/>
+                            <constraint firstItem="5HE-jd-uAU" firstAttribute="centerX" secondItem="NVo-XJ-LrQ" secondAttribute="centerX" id="fhu-AM-OUF"/>
+                            <constraint firstItem="Jag-Qh-cjg" firstAttribute="centerX" secondItem="NVo-XJ-LrQ" secondAttribute="centerX" id="nqF-MD-ypI"/>
+                            <constraint firstItem="RcK-EB-0QZ" firstAttribute="top" secondItem="wSe-4Y-uFP" secondAttribute="top" constant="36" id="nws-wq-prE"/>
+                            <constraint firstItem="Jag-Qh-cjg" firstAttribute="leading" secondItem="wSe-4Y-uFP" secondAttribute="leading" constant="20" id="ti6-uj-HYu"/>
+                            <constraint firstItem="Jag-Qh-cjg" firstAttribute="centerY" secondItem="NVo-XJ-LrQ" secondAttribute="centerY" id="vQC-Le-8Wi"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="confirmAppointmentButton" destination="av3-gO-geP" id="YVY-jr-e0y"/>
+                        <outlet property="dateLabel" destination="9qj-eo-mb0" id="0hd-8x-EtD"/>
+                        <outlet property="declineAppointmentButton" destination="awU-S1-Jwg" id="TAS-xc-YD9"/>
+                        <outlet property="sendMessageButton" destination="TwB-qg-lEY" id="FeQ-tD-V34"/>
+                        <outlet property="statusLabel" destination="Uec-7F-QdM" id="Frz-ba-9sO"/>
+                        <outlet property="vehicleLabel" destination="N7z-Nr-EeX" id="ZDp-Dc-AML"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wYc-pZ-uT3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="920" y="727"/>
+        </scene>
+        <!--Repairshop Appointments Controller-->
+        <scene sceneID="SAM-1k-o5H">
+            <objects>
+                <viewController storyboardIdentifier="RepairshopAppointmentsController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0W0-i4-JWj" customClass="RepairshopAppointmentsController" customModule="RepairShop" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yDH-Ma-Oga">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appointments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RMI-EW-rQh">
+                                <rect key="frame" x="143" y="79" width="107" height="20.333333333333329"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rxQ-Qh-9nC">
+                                <rect key="frame" x="19.999999999999996" y="95" width="61.666666666666657" height="34.333333333333343"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Back"/>
+                                <connections>
+                                    <action selector="onBackPressed" destination="0W0-i4-JWj" eventType="touchUpInside" id="57Y-pz-aWI"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="EVK-G4-Tqb">
+                                <rect key="frame" x="0.0" y="137.33333333333331" width="393" height="660.66666666666674"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AppointmentTableViewCell" id="62U-fy-nY9" customClass="AppointmentTableViewCell" customModule="RepairShop" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="44.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="62U-fy-nY9" id="oyW-Hi-Ee1">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="44.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dwQ-SB-AfM">
+                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="44.666666666666664"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shop name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WSc-Q9-YWs">
+                                                            <rect key="frame" x="20" y="12.000000000000002" width="172.66666666666666" height="20.666666666666671"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Status" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFi-0m-ZbF">
+                                                            <rect key="frame" x="200.66666666666663" y="12.000000000000002" width="172.33333333333337" height="20.666666666666671"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <edgeInsets key="layoutMargins" top="12" left="20" bottom="12" right="20"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="dwQ-SB-AfM" firstAttribute="leading" secondItem="oyW-Hi-Ee1" secondAttribute="leading" id="Bqb-6b-2Lk"/>
+                                                <constraint firstAttribute="trailing" secondItem="dwQ-SB-AfM" secondAttribute="trailing" id="NWZ-wL-AzG"/>
+                                                <constraint firstItem="dwQ-SB-AfM" firstAttribute="top" secondItem="oyW-Hi-Ee1" secondAttribute="top" id="UA7-BN-3vG"/>
+                                                <constraint firstAttribute="bottom" secondItem="dwQ-SB-AfM" secondAttribute="bottom" id="cip-Qm-5S1"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="shopNameLabel" destination="WSc-Q9-YWs" id="gow-B4-cfe"/>
+                                            <outlet property="statusLabel" destination="pFi-0m-ZbF" id="f7T-en-C10"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="xfb-c2-Ahr"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="EVK-G4-Tqb" firstAttribute="leading" secondItem="xfb-c2-Ahr" secondAttribute="leading" id="0us-IJ-uwn"/>
+                            <constraint firstItem="rxQ-Qh-9nC" firstAttribute="top" secondItem="xfb-c2-Ahr" secondAttribute="top" constant="36" id="3bZ-KQ-tXR"/>
+                            <constraint firstItem="xfb-c2-Ahr" firstAttribute="trailing" secondItem="EVK-G4-Tqb" secondAttribute="trailing" id="ANn-om-B88"/>
+                            <constraint firstItem="RMI-EW-rQh" firstAttribute="top" secondItem="xfb-c2-Ahr" secondAttribute="top" constant="20" id="ErE-Ve-pUK"/>
+                            <constraint firstItem="EVK-G4-Tqb" firstAttribute="top" secondItem="rxQ-Qh-9nC" secondAttribute="bottom" constant="8" id="KTJ-IB-nTM"/>
+                            <constraint firstItem="rxQ-Qh-9nC" firstAttribute="leading" secondItem="xfb-c2-Ahr" secondAttribute="leading" constant="20" id="S6z-PK-eok"/>
+                            <constraint firstItem="xfb-c2-Ahr" firstAttribute="bottom" secondItem="EVK-G4-Tqb" secondAttribute="bottom" constant="20" id="vsM-mk-ITv"/>
+                            <constraint firstItem="RMI-EW-rQh" firstAttribute="centerX" secondItem="yDH-Ma-Oga" secondAttribute="centerX" id="zbI-G3-mqS"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="EVK-G4-Tqb" id="gch-DO-okY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6hE-8a-WBJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="728"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

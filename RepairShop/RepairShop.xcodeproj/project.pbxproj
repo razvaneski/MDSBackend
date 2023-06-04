@@ -17,7 +17,7 @@
 		E5587F802A190DB400374442 /* AppointmentsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5587F7F2A190DB400374442 /* AppointmentsService.swift */; };
 		E5587F832A190E9100374442 /* MyAppointmentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5587F822A190E9100374442 /* MyAppointmentsController.swift */; };
 		E5587F852A190EA700374442 /* MyAppointmentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5587F842A190EA700374442 /* MyAppointmentsViewModel.swift */; };
-		E5587F872A1919C600374442 /* AppointmentDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5587F862A1919C600374442 /* AppointmentDetailsController.swift */; };
+		E5587F872A1919C600374442 /* UserAppointmentDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5587F862A1919C600374442 /* UserAppointmentDetailsController.swift */; };
 		E5587F892A1A204E00374442 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5587F882A1A204E00374442 /* Conversation.swift */; };
 		E5587F8B2A1A20C000374442 /* ConversationsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5587F8A2A1A20C000374442 /* ConversationsAPI.swift */; };
 		E5587F8D2A1A22D700374442 /* ConversationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5587F8C2A1A22D700374442 /* ConversationsService.swift */; };
@@ -33,6 +33,12 @@
 		E5A47BEB29F6CDA6004C5294 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5A47BEA29F6CDA6004C5294 /* Assets.xcassets */; };
 		E5A47BEE29F6CDA6004C5294 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5A47BEC29F6CDA6004C5294 /* LaunchScreen.storyboard */; };
 		E5BF4CBD2A2A251F000FC7FA /* AddAppointmentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF4CBC2A2A251F000FC7FA /* AddAppointmentController.swift */; };
+		E5BF4CC02A2A47CE000FC7FA /* RepairshopScreens.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5BF4CBF2A2A47CE000FC7FA /* RepairshopScreens.storyboard */; };
+		E5BF4CC32A2A486A000FC7FA /* RepairshopAppointmentDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF4CC22A2A486A000FC7FA /* RepairshopAppointmentDetailsController.swift */; };
+		E5BF4CC52A2A4A89000FC7FA /* RepairshopAppointmentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF4CC42A2A4A89000FC7FA /* RepairshopAppointmentsController.swift */; };
+		E5BF4CC82A2CA927000FC7FA /* RepairshopsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF4CC72A2CA927000FC7FA /* RepairshopsController.swift */; };
+		E5BF4CCA2A2CAC57000FC7FA /* RepairshopDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF4CC92A2CAC57000FC7FA /* RepairshopDetailsController.swift */; };
+		E5BF4CCC2A2CAE5F000FC7FA /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF4CCB2A2CAE5F000FC7FA /* Review.swift */; };
 		E5ECF6FA2A0665980065A541 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ECF6F92A0665980065A541 /* BaseController.swift */; };
 		E5ECF6FC2A0666EB0065A541 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ECF6FB2A0666EB0065A541 /* HomeViewModel.swift */; };
 		E5ECF6FE2A06674F0065A541 /* Variable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ECF6FD2A06674F0065A541 /* Variable.swift */; };
@@ -69,7 +75,7 @@
 		E5587F7F2A190DB400374442 /* AppointmentsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentsService.swift; sourceTree = "<group>"; };
 		E5587F822A190E9100374442 /* MyAppointmentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppointmentsController.swift; sourceTree = "<group>"; };
 		E5587F842A190EA700374442 /* MyAppointmentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppointmentsViewModel.swift; sourceTree = "<group>"; };
-		E5587F862A1919C600374442 /* AppointmentDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailsController.swift; sourceTree = "<group>"; };
+		E5587F862A1919C600374442 /* UserAppointmentDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAppointmentDetailsController.swift; sourceTree = "<group>"; };
 		E5587F882A1A204E00374442 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		E5587F8A2A1A20C000374442 /* ConversationsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsAPI.swift; sourceTree = "<group>"; };
 		E5587F8C2A1A22D700374442 /* ConversationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsService.swift; sourceTree = "<group>"; };
@@ -87,6 +93,12 @@
 		E5A47BED29F6CDA6004C5294 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E5A47BEF29F6CDA6004C5294 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5BF4CBC2A2A251F000FC7FA /* AddAppointmentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAppointmentController.swift; sourceTree = "<group>"; };
+		E5BF4CBF2A2A47CE000FC7FA /* RepairshopScreens.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RepairshopScreens.storyboard; sourceTree = "<group>"; };
+		E5BF4CC22A2A486A000FC7FA /* RepairshopAppointmentDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairshopAppointmentDetailsController.swift; sourceTree = "<group>"; };
+		E5BF4CC42A2A4A89000FC7FA /* RepairshopAppointmentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairshopAppointmentsController.swift; sourceTree = "<group>"; };
+		E5BF4CC72A2CA927000FC7FA /* RepairshopsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairshopsController.swift; sourceTree = "<group>"; };
+		E5BF4CC92A2CAC57000FC7FA /* RepairshopDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairshopDetailsController.swift; sourceTree = "<group>"; };
+		E5BF4CCB2A2CAE5F000FC7FA /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		E5ECF6F92A0665980065A541 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		E5ECF6FB2A0666EB0065A541 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		E5ECF6FD2A06674F0065A541 /* Variable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variable.swift; sourceTree = "<group>"; };
@@ -144,9 +156,9 @@
 		E5587F812A190E7B00374442 /* My Appointments */ = {
 			isa = PBXGroup;
 			children = (
+				E5587F862A1919C600374442 /* UserAppointmentDetailsController.swift */,
 				E5587F822A190E9100374442 /* MyAppointmentsController.swift */,
 				E5587F842A190EA700374442 /* MyAppointmentsViewModel.swift */,
-				E5587F862A1919C600374442 /* AppointmentDetailsController.swift */,
 				E5BF4CBC2A2A251F000FC7FA /* AddAppointmentController.swift */,
 			);
 			path = "My Appointments";
@@ -166,6 +178,7 @@
 		E5587F992A1A404F00374442 /* User Screens */ = {
 			isa = PBXGroup;
 			children = (
+				E5BF4CC62A2CA91A000FC7FA /* Repairshops */,
 				E5ECF7282A07D26C0065A541 /* My Vehicles */,
 				E5587F812A190E7B00374442 /* My Appointments */,
 			);
@@ -187,6 +200,7 @@
 		E5587F9B2A1A406B00374442 /* RepairshopScreens */ = {
 			isa = PBXGroup;
 			children = (
+				E5BF4CC12A2A4858000FC7FA /* Appointments */,
 				E5587F9C2A1A40A300374442 /* Main Menu */,
 			);
 			path = RepairshopScreens;
@@ -249,6 +263,24 @@
 			path = "Repairshop Profile";
 			sourceTree = "<group>";
 		};
+		E5BF4CC12A2A4858000FC7FA /* Appointments */ = {
+			isa = PBXGroup;
+			children = (
+				E5BF4CC22A2A486A000FC7FA /* RepairshopAppointmentDetailsController.swift */,
+				E5BF4CC42A2A4A89000FC7FA /* RepairshopAppointmentsController.swift */,
+			);
+			path = Appointments;
+			sourceTree = "<group>";
+		};
+		E5BF4CC62A2CA91A000FC7FA /* Repairshops */ = {
+			isa = PBXGroup;
+			children = (
+				E5BF4CC72A2CA927000FC7FA /* RepairshopsController.swift */,
+				E5BF4CC92A2CAC57000FC7FA /* RepairshopDetailsController.swift */,
+			);
+			path = Repairshops;
+			sourceTree = "<group>";
+		};
 		E5ECF6F82A06658A0065A541 /* Base+Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -283,6 +315,7 @@
 				E5587F792A190A4300374442 /* Appointment.swift */,
 				E5587F7B2A190A5A00374442 /* Repairshop.swift */,
 				E5587F882A1A204E00374442 /* Conversation.swift */,
+				E5BF4CCB2A2CAE5F000FC7FA /* Review.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -334,6 +367,7 @@
 				E5A47BE729F6CDA5004C5294 /* Main.storyboard */,
 				E5A47BEC29F6CDA6004C5294 /* LaunchScreen.storyboard */,
 				E5ECF71E2A07CE510065A541 /* UserScreens.storyboard */,
+				E5BF4CBF2A2A47CE000FC7FA /* RepairshopScreens.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -410,6 +444,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5BF4CC02A2A47CE000FC7FA /* RepairshopScreens.storyboard in Resources */,
 				E5A47BEE29F6CDA6004C5294 /* LaunchScreen.storyboard in Resources */,
 				E5A47BEB29F6CDA6004C5294 /* Assets.xcassets in Resources */,
 				E5A47BE929F6CDA5004C5294 /* Main.storyboard in Resources */,
@@ -472,12 +507,16 @@
 				E5ECF71B2A06FBF70065A541 /* SignUpViewModel.swift in Sources */,
 				E5ECF7052A0674750065A541 /* UserAPI.swift in Sources */,
 				E5ECF6FE2A06674F0065A541 /* Variable.swift in Sources */,
+				E5BF4CC52A2A4A89000FC7FA /* RepairshopAppointmentsController.swift in Sources */,
 				E5587F9E2A1A40B100374442 /* RepairshopMainMenuController.swift in Sources */,
 				E5587F832A190E9100374442 /* MyAppointmentsController.swift in Sources */,
+				E5BF4CCA2A2CAC57000FC7FA /* RepairshopDetailsController.swift in Sources */,
 				E5A47BE229F6CDA5004C5294 /* AppDelegate.swift in Sources */,
+				E5BF4CC32A2A486A000FC7FA /* RepairshopAppointmentDetailsController.swift in Sources */,
 				E5ECF7252A07CECA0065A541 /* VehiclesAPI.swift in Sources */,
 				E5ECF7002A0668AB0065A541 /* BaseViewModel.swift in Sources */,
 				E5BF4CBD2A2A251F000FC7FA /* AddAppointmentController.swift in Sources */,
+				E5BF4CC82A2CA927000FC7FA /* RepairshopsController.swift in Sources */,
 				E5587F802A190DB400374442 /* AppointmentsService.swift in Sources */,
 				E5ECF70F2A0683200065A541 /* Storage.swift in Sources */,
 				E5ECF72C2A07D4580065A541 /* MyVehiclesViewModel.swift in Sources */,
@@ -494,7 +533,7 @@
 				E5ECF6FA2A0665980065A541 /* BaseController.swift in Sources */,
 				E5587F782A18FCBA00374442 /* AddVehicleController.swift in Sources */,
 				E5ECF7112A0684790065A541 /* Instantiation.swift in Sources */,
-				E5587F872A1919C600374442 /* AppointmentDetailsController.swift in Sources */,
+				E5587F872A1919C600374442 /* UserAppointmentDetailsController.swift in Sources */,
 				E5ECF7212A07CE640065A541 /* UserMainMenu.swift in Sources */,
 				E5587F762A18DFFA00374442 /* VehicleDetailsViewModel.swift in Sources */,
 				E5ECF7192A06F0CC0065A541 /* SignUpController.swift in Sources */,
@@ -503,6 +542,7 @@
 				E5ECF70D2A0676640065A541 /* BaseService.swift in Sources */,
 				E5587F892A1A204E00374442 /* Conversation.swift in Sources */,
 				E5ECF7232A07CEA70065A541 /* VehiclesService.swift in Sources */,
+				E5BF4CCC2A2CAE5F000FC7FA /* Review.swift in Sources */,
 				E5587F902A1A283200374442 /* ConversationsController.swift in Sources */,
 				E5587F7C2A190A5A00374442 /* Repairshop.swift in Sources */,
 				E5ECF7152A06EF0A0065A541 /* LoginController.swift in Sources */,

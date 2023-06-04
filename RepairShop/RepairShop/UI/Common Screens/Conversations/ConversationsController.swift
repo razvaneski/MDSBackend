@@ -12,9 +12,14 @@ class ConversationTableViewCell: UITableViewCell {
     @IBOutlet weak private var conversationNameLabel: UILabel!
     @IBOutlet weak private var lastMessageLabel: UILabel!
     
-    func configure(receiverName: String, lastMessageDate: Date) {
+    func configure(receiverName: String, lastMessageDate: Date?) {
         self.conversationNameLabel.text = "With: \(receiverName)"
-        self.lastMessageLabel.text = "Last message: \(lastMessageDate.formatted())"
+        if let lastMessageDate {
+            self.lastMessageLabel.isHidden = false
+            self.lastMessageLabel.text = "Last message: \(lastMessageDate.formatted())"
+        } else {
+            self.lastMessageLabel.isHidden = true
+        }
     }
 }
 
@@ -89,7 +94,7 @@ extension ConversationsController: UITableViewDelegate, UITableViewDataSource {
         
         let conversation = viewModel.conversations.value![indexPath.row]
         let receiverName = viewModel.isCurrentUserRepairshop ? conversation.userName : conversation.repairshopName
-        let lastMessageDate = conversation.messages.last!.date
+        let lastMessageDate = conversation.messages.last?.date
         
         cell.configure(receiverName: receiverName, lastMessageDate: lastMessageDate)
         

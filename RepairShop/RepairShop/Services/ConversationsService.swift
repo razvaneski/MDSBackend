@@ -22,4 +22,8 @@ class ConversationsService: BaseService {
     func sendMessage(receiverId: String, message: String) -> Single<Conversation> {
         return ConversationsAPI.shared.sendMessage(token: token, message: message, receiverId: receiverId)
     }
+    
+    func getConversation(receiverId: String) -> Single<Conversation> {
+        return ConversationsAPI.shared.getConversation(token: token, receiverId: receiverId)
+    }
 }

@@ -29,6 +29,7 @@ class AppointmentsAPI: BaseAPI {
                         let vehicleJson = wrapperJson["vehicle"]
                         return Vehicle(
                             id: vehicleJson["_id"].stringValue,
+                            userId: vehicleJson["user_id"].stringValue,
                             vin: vehicleJson["vin"].stringValue,
                             licensePlate: vehicleJson["license_plate"].stringValue,
                             make: vehicleJson["make"].stringValue,
@@ -70,6 +71,7 @@ class AppointmentsAPI: BaseAPI {
                         let vehicleJson = wrapperJson["vehicle"]
                         return Vehicle(
                             id: vehicleJson["_id"].stringValue,
+                            userId: vehicleJson["user_id"].stringValue,
                             vin: vehicleJson["vin"].stringValue,
                             licensePlate: vehicleJson["license_plate"].stringValue,
                             make: vehicleJson["make"].stringValue,

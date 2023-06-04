@@ -32,10 +32,11 @@ class RepairshopMainMenuController: BaseController {
     }
     
     @IBAction func onAppointmentsPressed(_ sender: Any) {
-        
+        let vc = instantiateViewController(ofType: RepairshopAppointmentsController.self, inStoryboard: .RepairshopScreens)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func onProfilePressed(_ sender: Any) {
-        
+        // TODO
     }
 }

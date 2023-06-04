@@ -24,6 +24,7 @@ class VehiclesAPI: BaseAPI {
             return json.arrayValue.map { vehicleJson in
                 Vehicle(
                     id: vehicleJson["_id"].stringValue,
+                    userId: vehicleJson["user_id"].stringValue,
                     vin: vehicleJson["vin"].stringValue,
                     licensePlate: vehicleJson["license_plate"].stringValue,
                     make: vehicleJson["make"].stringValue,
@@ -61,6 +62,7 @@ class VehiclesAPI: BaseAPI {
         return call(endpoint: "getvehicle?id=\(id)", method: .get, headers: headers) { json in
             return Vehicle(
                 id: json["_id"].stringValue,
+                userId: json["user_id"].stringValue,
                 vin: json["vin"].stringValue,
                 licensePlate: json["license_plate"].stringValue,
                 make: json["make"].stringValue,

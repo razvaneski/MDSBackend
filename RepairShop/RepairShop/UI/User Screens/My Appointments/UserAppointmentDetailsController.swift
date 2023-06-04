@@ -1,5 +1,5 @@
 //
-//  AppointmentDetailsController.swift
+//  UserAppointmentDetailsController.swift
 //  RepairShop
 //
 //  Created by Razvan Dumitriu on 20.05.2023.
@@ -10,6 +10,7 @@ import RxSwift
 
 enum AppointmentDetailsViewModelEvent {
     case statusChanged(newStatus: Appointment.Status)
+    case goToConversation(conversation: Conversation)
 }
 
 class AppointmentDetailsViewModel: BaseViewModel<AppointmentDetailsViewModelEvent> {
@@ -26,12 +27,26 @@ class AppointmentDetailsViewModel: BaseViewModel<AppointmentDetailsViewModelEven
             }.disposed(by: disposeBag)
 
     }
+    
+    func getConversation(receiverId: String) {
+        self.stateSubject.onNext(.loading)
+        ConversationsService.shared.getConversation(receiverId: receiverId)
+            .asObservable()
+            .subscribe { [weak self] conversation in
+                self?.eventSubject.onNext(.goToConversation(conversation: conversation))
+                self?.stateSubject.onNext(.idle)
+            } onError: { [weak self] error in
+                self?.stateSubject.onNext(.idle)
+                self?.errorSubject.onNext(error)
+            }.disposed(by: disposeBag)
+    }
 }
 
-class AppointmentDetailsController: BaseController {
+class UserAppointmentDetailsController: BaseController {
     @IBOutlet weak private var shopNameLabel: UILabel!
     @IBOutlet weak private var dateLabel: UILabel!
     @IBOutlet weak private var vehicleLabel: UILabel!
+    @IBOutlet weak private var addReviewButton: UIButton!
     @IBOutlet weak private var statusLabel: UILabel!
     @IBOutlet weak private var cancelButton: UIButton!
     
@@ -69,6 +84,12 @@ class AppointmentDetailsController: BaseController {
                     default:
                         break
                     }
+                case .goToConversation(conversation: let conversation):
+                    let vc = instantiateViewController(ofType: ConversationMessagesController.self, inStoryboard: .Main) {
+                        let viewModel = ConversationMessagesViewModel(initialConversation: conversation)
+                        $0.configure(viewModel: viewModel)
+                    }
+                    self?.navigationController?.pushViewController(vc, animated: true)
                 }
             }.disposed(by: disposeBag)
         
@@ -99,11 +120,14 @@ class AppointmentDetailsController: BaseController {
         self.vehicleLabel.text = "Vehicle: \(appointment.vehicle.year) \(appointment.vehicle.make) \(appointment.vehicle.model)"
         self.statusLabel.text = "Status: \(appointment.status.rawValue)"
         
+        self.addReviewButton.isHidden = true
         switch appointment.status {
         case .pending:
             statusLabel.textColor = .systemOrange
         case .completed:
             statusLabel.textColor = .systemPurple
+            self.addReviewButton.isHidden = false
+            cancelButton.isHidden = true
         case .confirmed:
             statusLabel.textColor = .systemGreen
         case .declined, .cancelled:
@@ -118,5 +142,13 @@ class AppointmentDetailsController: BaseController {
     
     @IBAction private func onCancelAppointmentPressed() {
         self.viewModel.changeAppointmentStatus(id: appointment.id, status: .cancelled)
+    }
+    
+    @IBAction func onSendMessagePressed(_ sender: Any) {
+        self.viewModel.getConversation(receiverId: appointment.repairshop.id)
+    }
+    
+    @IBAction func onAddReviewPressed(_ sender: Any) {
+        // TODO
     }
 }

@@ -1,5 +1,5 @@
 //
-//  MyAppointmentsController.swift
+//  RepairshopAppointmentsController.swift
 //  RepairShop
 //
 //  Created by Razvan Dumitriu on 20.05.2023.
@@ -8,35 +8,14 @@
 import UIKit
 import RxSwift
 
-class AppointmentTableViewCell: UITableViewCell {
-    @IBOutlet weak private var statusLabel: UILabel!
-    @IBOutlet weak private var shopNameLabel: UILabel!
-    
-    func configure(shopName: String, status: Appointment.Status) {
-        shopNameLabel.text = shopName
-        statusLabel.text = status.rawValue
-        
-        switch status {
-        case .pending:
-            statusLabel.textColor = .systemOrange
-        case .declined, .cancelled:
-            statusLabel.textColor = .systemRed
-        case .confirmed:
-            statusLabel.textColor = .systemGreen
-        case .completed:
-            statusLabel.textColor = .systemPurple
-        }
-    }
-}
-
-class MyAppointmentsController: BaseController {
+class RepairshopAppointmentsController: BaseController {
     @IBOutlet weak private var tableView: UITableView!
     
     private var viewModel: AppointmentsViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.viewModel = AppointmentsViewModel(userType: .user)
+        self.viewModel = AppointmentsViewModel(userType: .repairShop)
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -45,7 +24,7 @@ class MyAppointmentsController: BaseController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.getAppointments(.user)
+        viewModel.getAppointments(.repairShop)
     }
     
     private func bindVM() {
@@ -79,14 +58,9 @@ class MyAppointmentsController: BaseController {
     @IBAction private func onBackPressed() {
         self.navigationController?.popViewController(animated: true)
     }
-    
-    @IBAction private func onAddPressed() {
-        let vc = instantiateViewController(ofType: AddAppointmentController.self, inStoryboard: .UserScreens)
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
 }
 
-extension MyAppointmentsController: UITableViewDelegate, UITableViewDataSource {
+extension RepairshopAppointmentsController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.appointments.value?.count ?? 0
     }
@@ -94,13 +68,14 @@ extension MyAppointmentsController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AppointmentTableViewCell", for: indexPath) as! AppointmentTableViewCell
         let appointment = viewModel.appointments.value![indexPath.row]
-        cell.configure(shopName: appointment.repairshop.name, status: appointment.status)
+        let vehicleName = String(appointment.vehicle.year) + " " + appointment.vehicle.make + " " + appointment.vehicle.model
+        cell.configure(shopName: vehicleName, status: appointment.status)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let appointment = viewModel.appointments.value?[indexPath.row] else { return }
-        let vc = instantiateViewController(ofType: UserAppointmentDetailsController.self, inStoryboard: .UserScreens) {
+        let vc = instantiateViewController(ofType: RepairshopAppointmentDetailsController.self, inStoryboard: .RepairshopScreens) {
             $0.configure(appointment: appointment)
         }
         self.navigationController?.pushViewController(vc, animated: true)

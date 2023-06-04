@@ -50,4 +50,9 @@ class UserMainMenu: BaseController {
         let vc = instantiateViewController(ofType: ConversationsController.self, inStoryboard: .Main)
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    @IBAction func onRepairshopsPressed(_ sender: Any) {
+        let vc = instantiateViewController(ofType: RepairshopsController.self, inStoryboard: .UserScreens)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
