@@ -48,7 +48,7 @@ class AddAppointmentViewModel: BaseViewModel<AddAppointmentViewModelEvent> {
     
     private func getRepairShops() {
         self.stateSubject.onNext(.loading)
-        UserService.shared.getRepairshops()
+        RepairshopsService.shared.getRepairshops()
             .asObservable()
             .subscribe { [weak self] repairshops in
                 self?.repairShops.value = repairshops

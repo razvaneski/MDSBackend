@@ -39,6 +39,8 @@
 		E5BF4CC82A2CA927000FC7FA /* RepairshopsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF4CC72A2CA927000FC7FA /* RepairshopsController.swift */; };
 		E5BF4CCA2A2CAC57000FC7FA /* RepairshopDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF4CC92A2CAC57000FC7FA /* RepairshopDetailsController.swift */; };
 		E5BF4CCC2A2CAE5F000FC7FA /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF4CCB2A2CAE5F000FC7FA /* Review.swift */; };
+		E5BF4CCE2A2CBC34000FC7FA /* RepairshopsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF4CCD2A2CBC34000FC7FA /* RepairshopsService.swift */; };
+		E5BF4CD02A2CBC59000FC7FA /* RepairshopsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF4CCF2A2CBC59000FC7FA /* RepairshopsAPI.swift */; };
 		E5ECF6FA2A0665980065A541 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ECF6F92A0665980065A541 /* BaseController.swift */; };
 		E5ECF6FC2A0666EB0065A541 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ECF6FB2A0666EB0065A541 /* HomeViewModel.swift */; };
 		E5ECF6FE2A06674F0065A541 /* Variable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ECF6FD2A06674F0065A541 /* Variable.swift */; };
@@ -99,6 +101,8 @@
 		E5BF4CC72A2CA927000FC7FA /* RepairshopsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairshopsController.swift; sourceTree = "<group>"; };
 		E5BF4CC92A2CAC57000FC7FA /* RepairshopDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairshopDetailsController.swift; sourceTree = "<group>"; };
 		E5BF4CCB2A2CAE5F000FC7FA /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		E5BF4CCD2A2CBC34000FC7FA /* RepairshopsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairshopsService.swift; sourceTree = "<group>"; };
+		E5BF4CCF2A2CBC59000FC7FA /* RepairshopsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairshopsAPI.swift; sourceTree = "<group>"; };
 		E5ECF6F92A0665980065A541 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		E5ECF6FB2A0666EB0065A541 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		E5ECF6FD2A06674F0065A541 /* Variable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variable.swift; sourceTree = "<group>"; };
@@ -303,6 +307,7 @@
 				E5ECF7242A07CECA0065A541 /* VehiclesAPI.swift */,
 				E5587F7D2A190B3700374442 /* AppointmentsAPI.swift */,
 				E5587F8A2A1A20C000374442 /* ConversationsAPI.swift */,
+				E5BF4CCF2A2CBC59000FC7FA /* RepairshopsAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -327,6 +332,7 @@
 				E5ECF7222A07CEA70065A541 /* VehiclesService.swift */,
 				E5587F7F2A190DB400374442 /* AppointmentsService.swift */,
 				E5587F8C2A1A22D700374442 /* ConversationsService.swift */,
+				E5BF4CCD2A2CBC34000FC7FA /* RepairshopsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -534,6 +540,7 @@
 				E5587F782A18FCBA00374442 /* AddVehicleController.swift in Sources */,
 				E5ECF7112A0684790065A541 /* Instantiation.swift in Sources */,
 				E5587F872A1919C600374442 /* UserAppointmentDetailsController.swift in Sources */,
+				E5BF4CCE2A2CBC34000FC7FA /* RepairshopsService.swift in Sources */,
 				E5ECF7212A07CE640065A541 /* UserMainMenu.swift in Sources */,
 				E5587F762A18DFFA00374442 /* VehicleDetailsViewModel.swift in Sources */,
 				E5ECF7192A06F0CC0065A541 /* SignUpController.swift in Sources */,
@@ -541,6 +548,7 @@
 				E5ECF6FC2A0666EB0065A541 /* HomeViewModel.swift in Sources */,
 				E5ECF70D2A0676640065A541 /* BaseService.swift in Sources */,
 				E5587F892A1A204E00374442 /* Conversation.swift in Sources */,
+				E5BF4CD02A2CBC59000FC7FA /* RepairshopsAPI.swift in Sources */,
 				E5ECF7232A07CEA70065A541 /* VehiclesService.swift in Sources */,
 				E5BF4CCC2A2CAE5F000FC7FA /* Review.swift in Sources */,
 				E5587F902A1A283200374442 /* ConversationsController.swift in Sources */,

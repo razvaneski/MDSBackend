@@ -20,7 +20,7 @@ class RepairshopsViewModel: BaseViewModel<RepairshopsViewModelEvent> {
     
     private func getRepairshops() {
         self.stateSubject.onNext(.loading)
-        UserService.shared.getRepairshops()
+        RepairshopsService.shared.getRepairshops()
             .asObservable()
             .subscribe { [weak self] repairshops in
                 self?.stateSubject.onNext(.idle)
