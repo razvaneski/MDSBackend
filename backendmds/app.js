@@ -3,6 +3,7 @@ require("./config/database").connect();
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const cron = require("node-cron");
 
 const app = express();
 
@@ -419,6 +420,47 @@ app.get("/getconversations", async (req, res) => {
   }
 });
 
+app.get("/getconversation", async (req, res) => {
+  const { token } = req.headers;
+  const { receiver_id } = req.query;
+  const userId = getUserIdFromToken(token);
+  if (!userId) {
+    res.status(416).send("Invalid token");
+  } else {
+    const conversation = await Conversation.findOne({ $or: [{ user_id: userId, repairshop_id: receiver_id }, { user_id: receiver_id, repairshop_id: userId }] });
+    if (!conversation) {
+      const currentUser = await User.findById(userId);
+      if (!currentUser) {
+        res.status(416).send("Invalid token");
+      } else {
+        if (currentUser.user_type === "user") {
+          const newConversation = await Conversation.create({
+            user_id: userId,
+            user_name: currentUser.first_name + " " + currentUser.last_name,
+            repairshop_id: receiver_id,
+            repairshop_name: (await User.findById(receiver_id)).repairshop_name,
+            messages: [],
+          });
+          await newConversation.save();
+          res.status(200).json(newConversation);
+        } else {
+          const newConversation = await Conversation.create({
+            user_id: receiver_id,
+            user_name: (await User.findById(receiver_id)).first_name + " " + (await User.findById(receiver_id)).last_name,
+            repairshop_id: userId,
+            repairshop_name: currentUser.repairshop_name,
+            messages: [],
+          });
+          await newConversation.save();
+          res.status(200).json(newConversation);
+        }
+      }
+    } else {
+      res.status(200).json(conversation);
+    }
+  }
+});
+
 app.post("/sendmessage", async (req, res) => {
   const { token } = req.headers;
   const { receiver_id } = req.query;
@@ -486,8 +528,61 @@ app.post("/sendmessage", async (req, res) => {
   }
 });
 
+app.get("/getreviews", async (req, res) => {
+  const { token } = req.headers;
+  const { repairshop_id } = req.query;
+  const userId = getUserIdFromToken(token);
+  if (!userId) {
+    res.status(416).send("Invalid token");
+  } else {
+    const reviews = await Review.find({ repairshop_id: repairshop_id });
+    res.status(200).json(reviews);
+  }
+});
 
+app.post("/addreview", async (req, res) => {
+  const { token } = req.headers;
+  const { repairshop_id } = req.query;
+  const { rating, message } = req.body;
+  const userId = getUserIdFromToken(token);
+  if (!userId) {
+    res.status(416).send("Invalid token");
+  } else {
+    const newReview = await Review.create({
+      user_id: userId,
+      repairshop_id: repairshop_id,
+      rating: rating,
+      message: message,
+      date: new Date(),
+    });
+    await newReview.save();
+    res.status(200).json(newReview);
+  }
+});
 
+const job = cron.schedule('*/15 * * * *', async () => {
+  console.log("Appointments cleanup...");
+  try {
+    // Fetch all appointments
+    const appointments = await Appointment.find({});
 
+    // Perform action on each appointment
+    appointments.forEach(async appointment => {
+      // Check if the appointment date is in the past
+      if (appointment.appointment_date < new Date()) {
+        if (appointment.appointment_status === "pending") {
+          appointment.appointment_status = "declined";
+          await appointment.save();
+        } else if (appointment.appointment_status === "confirmed") {
+          appointment.appointment_status = "completed";
+          await appointment.save();
+        }
+      }
+    });
+  } catch (error) {
+    console.error('Error occurred during cron job:', error);
+  }
+});
 
+job.start();
 module.exports = app;
