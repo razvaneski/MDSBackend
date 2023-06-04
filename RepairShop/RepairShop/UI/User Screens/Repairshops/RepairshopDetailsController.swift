@@ -11,11 +11,26 @@ import RxSwift
 enum RepairshopDetailsViewModelEvent {}
 
 class RepairshopDetailsViewModel: BaseViewModel<RepairshopDetailsViewModelEvent> {
-    let repairshop: Repairshop
+    var repairshop: Repairshop!
     let reviews = Variable<[Review]?>(nil)
     
     init(repairshop: Repairshop) {
+        super.init()
         self.repairshop = repairshop
+        getReviews()
+    }
+    
+    private func getReviews() {
+        self.stateSubject.onNext(.loading)
+        RepairshopsService.shared.getReviews(repairshopId: repairshop.id)
+            .asObservable()
+            .subscribe { [weak self] reviews in
+                self?.stateSubject.onNext(.idle)
+                self?.reviews.value = reviews
+            } onError: { [weak self] error in
+                self?.stateSubject.onNext(.idle)
+                self?.errorSubject.onNext(error)
+            }.disposed(by: disposeBag)
     }
 }
 

@@ -17,20 +17,20 @@ class RepairshopAppointmentDetailsController: BaseController {
     @IBOutlet weak private var statusLabel: UILabel!
     
     private var viewModel: AppointmentDetailsViewModel!
-    private var appointment: Appointment!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = AppointmentDetailsViewModel()
         bindVM()
         configureUI()
     }
     
     func configure(appointment: Appointment) {
-        self.appointment = appointment
+        self.viewModel = AppointmentDetailsViewModel(appointment: appointment)
     }
     
     private func configureUI() {
+        let appointment = viewModel.appointment!
+        
         self.dateLabel.text = "Date: \(appointment.date.formatted())"
         self.vehicleLabel.text = "Vehicle: \(appointment.vehicle.year) \(appointment.vehicle.make) \(appointment.vehicle.model)"
         self.statusLabel.text = "Status: \(appointment.status.rawValue)"
@@ -82,6 +82,9 @@ class RepairshopAppointmentDetailsController: BaseController {
                         $0.configure(viewModel: viewModel)
                     }
                     self?.navigationController?.pushViewController(vc, animated: true)
+                    
+                case .addReviewSuccess:
+                    self?.showSuccessMessage("Review added successfully.")
                 }
             }.disposed(by: disposeBag)
         
@@ -111,14 +114,14 @@ class RepairshopAppointmentDetailsController: BaseController {
     }
     
     @IBAction private func onConfirmAppointmentPressed() {
-        viewModel.changeAppointmentStatus(id: appointment.id, status: .confirmed)
+        viewModel.changeAppointmentStatus(id: viewModel.appointment.id, status: .confirmed)
     }
     
     @IBAction private func onDeclineAppointmentPressed() {
-        viewModel.changeAppointmentStatus(id: appointment.id, status: .declined)
+        viewModel.changeAppointmentStatus(id: viewModel.appointment.id, status: .declined)
     }
     
     @IBAction private func onSendMessagePressed() {
-        viewModel.getConversation(receiverId: appointment.vehicle.userId)
+        viewModel.getConversation(receiverId: viewModel.appointment.vehicle.userId)
     }
 }

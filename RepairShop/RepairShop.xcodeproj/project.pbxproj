@@ -41,6 +41,7 @@
 		E5BF4CCC2A2CAE5F000FC7FA /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF4CCB2A2CAE5F000FC7FA /* Review.swift */; };
 		E5BF4CCE2A2CBC34000FC7FA /* RepairshopsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF4CCD2A2CBC34000FC7FA /* RepairshopsService.swift */; };
 		E5BF4CD02A2CBC59000FC7FA /* RepairshopsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF4CCF2A2CBC59000FC7FA /* RepairshopsAPI.swift */; };
+		E5BF4CD22A2D1D58000FC7FA /* AddRatingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF4CD12A2D1D58000FC7FA /* AddRatingController.swift */; };
 		E5ECF6FA2A0665980065A541 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ECF6F92A0665980065A541 /* BaseController.swift */; };
 		E5ECF6FC2A0666EB0065A541 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ECF6FB2A0666EB0065A541 /* HomeViewModel.swift */; };
 		E5ECF6FE2A06674F0065A541 /* Variable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ECF6FD2A06674F0065A541 /* Variable.swift */; };
@@ -103,6 +104,7 @@
 		E5BF4CCB2A2CAE5F000FC7FA /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		E5BF4CCD2A2CBC34000FC7FA /* RepairshopsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairshopsService.swift; sourceTree = "<group>"; };
 		E5BF4CCF2A2CBC59000FC7FA /* RepairshopsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairshopsAPI.swift; sourceTree = "<group>"; };
+		E5BF4CD12A2D1D58000FC7FA /* AddRatingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRatingController.swift; sourceTree = "<group>"; };
 		E5ECF6F92A0665980065A541 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		E5ECF6FB2A0666EB0065A541 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		E5ECF6FD2A06674F0065A541 /* Variable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variable.swift; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 			children = (
 				E5BF4CC72A2CA927000FC7FA /* RepairshopsController.swift */,
 				E5BF4CC92A2CAC57000FC7FA /* RepairshopDetailsController.swift */,
+				E5BF4CD12A2D1D58000FC7FA /* AddRatingController.swift */,
 			);
 			path = Repairshops;
 			sourceTree = "<group>";
@@ -554,6 +557,7 @@
 				E5587F902A1A283200374442 /* ConversationsController.swift in Sources */,
 				E5587F7C2A190A5A00374442 /* Repairshop.swift in Sources */,
 				E5ECF7152A06EF0A0065A541 /* LoginController.swift in Sources */,
+				E5BF4CD22A2D1D58000FC7FA /* AddRatingController.swift in Sources */,
 				E5587F922A1A2E9D00374442 /* ConversationsViewModel.swift in Sources */,
 				E5ECF72A2A07D27A0065A541 /* MyVehiclesController.swift in Sources */,
 				E5ECF7272A07CF0C0065A541 /* Vehicle.swift in Sources */,

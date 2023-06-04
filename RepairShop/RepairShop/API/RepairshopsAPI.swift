@@ -50,14 +50,14 @@ class RepairshopsAPI: BaseAPI {
         }
     }
     
-    func addReview(token: String, review: Review) -> Completable {
+    func addReview(token: String, repairshopId: String, rating: Int, message: String) -> Completable {
         let headers = ["token": token]
         let params = [
-            "rating": String(review.rating),
-            "message": review.message
+            "rating": String(rating),
+            "message": message
         ]
         
-        return call(endpoint: "addReview?repairshop_id=\(review.repairshopId)", method: .post, params: params, headers: headers) { _ in
+        return call(endpoint: "addreview?repairshop_id=\(repairshopId)", method: .post, params: params, headers: headers) { _ in
             //
         }.asCompletable()
     }

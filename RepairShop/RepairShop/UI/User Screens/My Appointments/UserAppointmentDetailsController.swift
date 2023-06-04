@@ -11,10 +11,17 @@ import RxSwift
 enum AppointmentDetailsViewModelEvent {
     case statusChanged(newStatus: Appointment.Status)
     case goToConversation(conversation: Conversation)
+    case addReviewSuccess
 }
 
 class AppointmentDetailsViewModel: BaseViewModel<AppointmentDetailsViewModelEvent> {
     let userInfo = UserService.shared.currentUserInfo
+    var appointment: Appointment!
+    
+    init(appointment: Appointment!) {
+        self.appointment = appointment
+    }
+    
     func changeAppointmentStatus(id: String, status: Appointment.Status) {
         self.stateSubject.onNext(.loading)
         AppointmentsService.shared.changeAppointmentStatus(id: id, newStatus: status)
@@ -40,6 +47,17 @@ class AppointmentDetailsViewModel: BaseViewModel<AppointmentDetailsViewModelEven
                 self?.errorSubject.onNext(error)
             }.disposed(by: disposeBag)
     }
+    
+    func sendReview(rating: Int, message: String) {
+        self.stateSubject.onNext(.loading)
+        RepairshopsService.shared.addReview(repairshopId: appointment.repairshop.id, rating: rating, message: message)
+            .subscribe { [weak self] in
+                self?.stateSubject.onNext(.idle)
+            } onError: { [weak self] error in
+                self?.stateSubject.onNext(.idle)
+                self?.errorSubject.onNext(error)
+            }.disposed(by: disposeBag)
+    }
 }
 
 class UserAppointmentDetailsController: BaseController {
@@ -49,19 +67,17 @@ class UserAppointmentDetailsController: BaseController {
     @IBOutlet weak private var addReviewButton: UIButton!
     @IBOutlet weak private var statusLabel: UILabel!
     @IBOutlet weak private var cancelButton: UIButton!
-    
-    private var appointment: Appointment!
+
     private var viewModel: AppointmentDetailsViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.viewModel = AppointmentDetailsViewModel()
         bindVM()
         configureUI()
     }
     
     func configure(appointment: Appointment) {
-        self.appointment = appointment
+        self.viewModel = AppointmentDetailsViewModel(appointment: appointment)
     }
     
     private func bindVM() {
@@ -90,6 +106,8 @@ class UserAppointmentDetailsController: BaseController {
                         $0.configure(viewModel: viewModel)
                     }
                     self?.navigationController?.pushViewController(vc, animated: true)
+                case .addReviewSuccess:
+                    self?.showSuccessMessage("Review added successfully.")
                 }
             }.disposed(by: disposeBag)
         
@@ -115,6 +133,8 @@ class UserAppointmentDetailsController: BaseController {
     }
     
     private func configureUI() {
+        let appointment = viewModel.appointment!
+        
         self.shopNameLabel.text = "Shop name: \(appointment.repairshop.name)"
         self.dateLabel.text = "Date: \(appointment.date.formatted())"
         self.vehicleLabel.text = "Vehicle: \(appointment.vehicle.year) \(appointment.vehicle.make) \(appointment.vehicle.model)"
@@ -141,14 +161,25 @@ class UserAppointmentDetailsController: BaseController {
     }
     
     @IBAction private func onCancelAppointmentPressed() {
-        self.viewModel.changeAppointmentStatus(id: appointment.id, status: .cancelled)
+        self.viewModel.changeAppointmentStatus(id: viewModel.appointment.id, status: .cancelled)
     }
     
     @IBAction func onSendMessagePressed(_ sender: Any) {
-        self.viewModel.getConversation(receiverId: appointment.repairshop.id)
+        self.viewModel.getConversation(receiverId: viewModel.appointment.repairshop.id)
     }
     
     @IBAction func onAddReviewPressed(_ sender: Any) {
-        // TODO
+        let vc = instantiateViewController(ofType: AddRatingController.self, inStoryboard: .UserScreens) {
+            $0.delegate = self
+        }
+        vc.modalTransitionStyle = .crossDissolve
+        vc.modalPresentationStyle = .overFullScreen
+        self.present(vc, animated: true)
+    }
+}
+
+extension UserAppointmentDetailsController: AddRatingControllerDelegate {
+    func didSendReview(rating: Int, message: String) {
+        viewModel.sendReview(rating: rating, message: message)
     }
 }

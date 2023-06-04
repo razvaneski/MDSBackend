@@ -13,6 +13,7 @@ const User = require("./model/user");
 const Vehicle = require("./model/vehicle");
 const Appointment = require("./model/appointment");
 const Conversation = require("./model/conversation");
+const Review = require("./model/review");
 const { json } = require("express");
 
 function getUserIdFromToken(token) {
