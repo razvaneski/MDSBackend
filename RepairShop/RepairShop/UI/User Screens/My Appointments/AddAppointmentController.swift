@@ -107,6 +107,13 @@ class AddAppointmentController: BaseController {
                 }
             }.disposed(by: disposeBag)
         
+        viewModel.errorSubject
+            .asObservable()
+            .observe(on: MainScheduler.instance)
+            .subscribe { [weak self] error in
+                self?.handleError(error: error)
+            }.disposed(by: disposeBag)
+        
         viewModel.eventSubject
             .asObservable()
             .observe(on: MainScheduler.instance)

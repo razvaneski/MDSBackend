@@ -33,8 +33,8 @@ class ConversationsAPI: BaseAPI {
                                 userId: messageJson["user_id"].stringValue,
                                 message: messageJson["message"].stringValue,
                                 date: {
-                                    let df = DateFormatter()
-                                    df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+                                    let df = ISO8601DateFormatter()
+                                    df.formatOptions.insert(.withFractionalSeconds)
                                     return df.date(from: messageJson["date"].stringValue)!
                                 }()
                             )
@@ -62,8 +62,8 @@ class ConversationsAPI: BaseAPI {
                             userId: messageJson["user_id"].stringValue,
                             message: messageJson["message"].stringValue,
                             date: {
-                                let df = DateFormatter()
-                                df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+                                let df = ISO8601DateFormatter()
+                                df.formatOptions.insert(.withFractionalSeconds)
                                 return df.date(from: messageJson["date"].stringValue)!
                             }()
                         )
@@ -88,8 +88,8 @@ class ConversationsAPI: BaseAPI {
                             userId: messageJson["user_id"].stringValue,
                             message: messageJson["message"].stringValue,
                             date: {
-                                let df = DateFormatter()
-                                df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+                                let df = ISO8601DateFormatter()
+                                df.formatOptions.insert(.withFractionalSeconds)
                                 return df.date(from: messageJson["date"].stringValue)!
                             }()
                         )

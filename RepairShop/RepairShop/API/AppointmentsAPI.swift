@@ -49,8 +49,8 @@ class AppointmentsAPI: BaseAPI {
                         )
                     }(),
                     date: {
-                        let df = DateFormatter()
-                        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+                        let df = ISO8601DateFormatter()
+                        df.formatOptions.insert(.withFractionalSeconds)
                         return df.date(from: appointmentJson["appointment_date"].stringValue)!
                     }(),
                     status: .init(rawValue: appointmentJson["appointment_status"].stringValue)!
@@ -91,8 +91,8 @@ class AppointmentsAPI: BaseAPI {
                         )
                     }(),
                     date: {
-                        let df = DateFormatter()
-                        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+                        let df = ISO8601DateFormatter()
+                        df.formatOptions.insert(.withFractionalSeconds)
                         return df.date(from: appointmentJson["appointment_date"].stringValue)!
                     }(),
                     status: .init(rawValue: appointmentJson["appointment_status"].stringValue)!
@@ -113,8 +113,8 @@ class AppointmentsAPI: BaseAPI {
     func addAppointment(token: String, vehicleId: String, repairshopId: String, date: Date) -> Completable {
         let headers = ["token": token]
         
-        let df = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        let df = ISO8601DateFormatter()
+        df.formatOptions.insert(.withFractionalSeconds)
         
         let params = [
             "vehicle_id": vehicleId,
