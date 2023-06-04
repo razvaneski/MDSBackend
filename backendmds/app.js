@@ -26,6 +26,25 @@ function getUserIdFromToken(token) {
   }
 }
 
+function compareTime(date, timeString) {
+  const hour = date.getHours();
+  const minute = date.getMinutes();
+
+  const hourString = hour.toString().padStart(2, '0');
+  const minuteString = minute.toString().padStart(2, '0');
+
+  const dateValue = hourString + minuteString;
+  const timeValue = timeString.replace(':', '');
+
+  if (dateValue < timeValue) {
+    return -1;
+  } else if (dateValue > timeValue) {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
 // Register
 app.post("/register", async (req, res) => {
 
@@ -118,8 +137,10 @@ app.post("/login", async (req, res) => {
         await user.save();
         // user
         res.status(200).json(user);
+        return;
       }
       res.status(416).send("Invalid Credentials");
+      return
     } catch (err) {
       console.log(err);
     }
@@ -136,20 +157,24 @@ app.get("/getuser", async (req, res) => {
     if (!user) {
       console.log("no user");
       res.status(416).send("Invalid token");
+      return;
     }
     else if (user.token !== token) {
       console.log("token mismatch");
       // console.log(user.token);
       // console.log(token);
       res.status(416).send("Invalid token");
+      return;
     } else {
       console.log("token match");
       res.status(200).json(user);
+      return;
     }
 
   } catch (error) {
     console.log("invalid token");
     res.status(416).send("Invalid token");
+    return;
   }
 });
 
@@ -162,13 +187,16 @@ app.post("/logout", async (req, res) => {
     const user = await User.findById(userId);
     if (!user) {
       res.status(416).send("Invalid token");
+      return;
     } else {
       user.token = null;
       await user.save();
       res.status(200).send("Logout successful");
+      return;
     }
   } catch {
     res.status(416).send("Invalid token");
+    return;
   }
 });
 
@@ -177,6 +205,7 @@ app.post("/addvehicle", async (req, res) => {
   const userId = getUserIdFromToken(token);
   if (!userId) {
     res.status(416).send("Invalid token");
+    return;
   } else {
     const { make, model, year, vin, license_plate } = req.body;
     const vehicle = await Vehicle.create({
@@ -189,6 +218,7 @@ app.post("/addvehicle", async (req, res) => {
     });
     await vehicle.save();
     res.status(201).json(vehicle);
+    return;
   }
 });
 
@@ -197,9 +227,11 @@ app.get("/getvehicles", async (req, res) => {
   const userId = getUserIdFromToken(token);
   if (!userId) {
     res.status(416).send("Invalid token");
+    return;
   } else {
     const vehicles = await Vehicle.find({ user_id: userId });
     res.status(200).json(vehicles);
+    return;
   }
 });
 
@@ -209,15 +241,19 @@ app.get("/getvehicle", async (req, res) => {
   const userId = getUserIdFromToken(token);
   if (!userId) {
     res.status(416).send("Invalid token");
+    return;
   } else {
     const vehicle = await Vehicle.findById(id);
     if (!vehicle) {
       res.status(416).send("No vehicle found");
+      return;
     } else {
       if (vehicle.user_id === userId) {
         res.status(200).json(vehicle);
+        return;
       } else {
         res.status(416).send("Invalid token");
+        return;
       }
     }
   }
@@ -229,10 +265,12 @@ app.post("/updatevehicle", async (req, res) => {
   const { id } = req.query;
   if (!userId) {
     res.status(416).send("Invalid token");
+    return;
   } else {
     const vehicle = await Vehicle.findById(id);
     if (!vehicle) {
       res.status(416).send("No vehicle found");
+      return;
     } else {
       if (vehicle.user_id === userId) {
         const { make, model, year, vin, license_plate } = req.body;
@@ -243,8 +281,10 @@ app.post("/updatevehicle", async (req, res) => {
         vehicle.license_plate = license_plate;
         await vehicle.save();
         res.status(200).json(vehicle);
+        return;
       } else {
         res.status(416).send("Invalid token");
+        return;
       }
     }
   }
@@ -256,16 +296,20 @@ app.post("/deletevehicle", async (req, res) => {
   const { id } = req.query;
   if (!userId) {
     res.status(416).send("Invalid token");
+    return;
   } else {
     const vehicle = await Vehicle.findById(id);
     if (!vehicle) {
       res.status(416).send("No vehicle found");
+      return;
     } else {
       if (vehicle.user_id == userId) {
         await Vehicle.findByIdAndDelete(id);
         res.status(200).send("Vehicle deleted");
+        return;
       } else {
         res.status(416).send("Invalid token");
+        return;
       }
     }
   }
@@ -276,6 +320,7 @@ app.get("/getuserappointments", async (req, res) => { // checked
   const userId = getUserIdFromToken(token);
   if (!userId) {
     res.status(416).send("Invalid token");
+    return;
   } else {
     const appointments = await Appointment.find({ user_id: userId });
     var response = [];
@@ -288,6 +333,7 @@ app.get("/getuserappointments", async (req, res) => { // checked
         });
     }));
     res.status(200).json(response);
+    return;
   }
 });
 
@@ -296,6 +342,7 @@ app.get("/getrepairshopappointments", async (req, res) => {
   const userId = getUserIdFromToken(token);
   if (!userId) {
     res.status(416).send("Invalid token");
+    return;
   } else {
     const appointments = (await Appointment.find({ repairshop_id: userId })).filter(appointment => appointment.status != "cancelled");
     var response = [];
@@ -308,6 +355,7 @@ app.get("/getrepairshopappointments", async (req, res) => {
         });
     }));
     res.status(200).json(response);
+    return;
   }
 });
 
@@ -316,6 +364,7 @@ app.post("/addappointment", async (req, res) => {
   const userId = getUserIdFromToken(token);
   if (!userId) {
     res.status(416).send("Invalid token");
+    return;
   } else {
     const { vehicle_id, repairshop_id, appointment_date } = req.body;
     // cast appointment_date to Date object
@@ -323,15 +372,32 @@ app.post("/addappointment", async (req, res) => {
     // check if date is valid
     if (date == "Invalid Date") {
       res.status(416).send("Invalid date");
+      return;
     }
-    const appointment = await Appointment.create({
-      vehicle_id,
-      repairshop_id,
-      appointment_date: date,
-      user_id: userId,
-    });
-    await appointment.save();
-    res.status(201).json(appointment);
+    const existingAppointment = await Appointment.findOne({ appointment_date: date, repairshop_id: repairshop_id });
+    if (existingAppointment) {
+      res.status(416).send("Selected date/time is not available. Please book at a different time.");
+      return;
+    }
+    const repairshop = await User.findById(repairshop_id);
+    if (!repairshop) {
+      res.status(416).send("Repairshop does not exist.");
+      return;
+    }
+    if (compareTime(date, repairshop.repairshop_start_time) < 0 || compareTime(date, repairshop.repairshop_end_time) > 0 || date.getDay() % 6 == 0) {
+      res.status(416).send("Selected date/time is not within repairshop hours.");
+      return;
+    } else {
+      const appointment = await Appointment.create({
+        vehicle_id,
+        repairshop_id,
+        appointment_date: date,
+        user_id: userId,
+      });
+      await appointment.save();
+      res.status(201).json(appointment);
+      return;
+    }
   }
 });
 
@@ -341,18 +407,22 @@ app.post("/updateappointmentstatus", async (req, res) => {
   const { id } = req.query;
   if (!userId) {
     res.status(416).send("Invalid token");
+    return;
   } else {
     const appointment = await Appointment.findById(id);
     if (!appointment) {
       res.status(416).send("No appointment found");
+      return;
     } else {
       if (appointment.repairshop_id == userId || appointment.user_id == userId) {
         const { appointment_status } = req.body;
         appointment.appointment_status = appointment_status;
         await appointment.save();
         res.status(200).json(appointment);
+        return;
       } else {
         res.status(416).send("Invalid token");
+        return;
       }
     }
   }
@@ -364,16 +434,20 @@ app.post("/deleteappointment", async (req, res) => {
   const { id } = req.query;
   if (!userId) {
     res.status(416).send("Invalid token");
+    return;
   } else {
     const appointment = Appointment.findById(id);
     if (!appointment) {
       res.status(416).send("No appointment found");
+      return;
     } else {
       if (appointment.user_id == userId) {
         await Appointment.findByIdAndDelete(id);
         res.status(200).send("Appointment deleted");
+        return;
       } else {
         res.status(416).send("Invalid token");
+        return;
       }
     }
   }
@@ -384,9 +458,11 @@ app.get("/getrepairshops", async (req, res) => { // checked
   const userId = getUserIdFromToken(token);
   if (!userId) {
     res.status(416).send("Invalid token");
+    return;
   } else {
     const repairshops = await User.find({ user_type: "repairshop" });
     res.status(200).json(repairshops);
+    return;
   }
 });
 
@@ -396,15 +472,19 @@ app.get("/getrepairshop", async (req, res) => { // checked
   const userId = getUserIdFromToken(token);
   if (!userId) {
     res.status(416).send("Invalid token");
+    return;
   } else {
     const repairshop = await User.findById(id);
     if (!repairshop) {
       res.status(416).send("No repairshop found");
+      return;
     } else {
       if (repairshop.user_type === "repairshop") {
         res.status(200).json(repairshop);
+        return;
       } else {
         res.status(416).send("No repairshop found");
+        return;
       }
     }
   }
@@ -415,9 +495,11 @@ app.get("/getconversations", async (req, res) => {
   const userId = getUserIdFromToken(token);
   if (!userId) {
     res.status(416).send("Invalid token");
+    return;
   } else {
     const conversations = await Conversation.find({ $or: [{ user_id: userId }, { repairshop_id: userId }] });
     res.status(200).json(conversations);
+    return;
   }
 });
 
@@ -427,12 +509,14 @@ app.get("/getconversation", async (req, res) => {
   const userId = getUserIdFromToken(token);
   if (!userId) {
     res.status(416).send("Invalid token");
+    return;
   } else {
     const conversation = await Conversation.findOne({ $or: [{ user_id: userId, repairshop_id: receiver_id }, { user_id: receiver_id, repairshop_id: userId }] });
     if (!conversation) {
       const currentUser = await User.findById(userId);
       if (!currentUser) {
         res.status(416).send("Invalid token");
+        return;
       } else {
         if (currentUser.user_type === "user") {
           const newConversation = await Conversation.create({
@@ -444,6 +528,7 @@ app.get("/getconversation", async (req, res) => {
           });
           await newConversation.save();
           res.status(200).json(newConversation);
+          return;
         } else {
           const newConversation = await Conversation.create({
             user_id: receiver_id,
@@ -454,10 +539,12 @@ app.get("/getconversation", async (req, res) => {
           });
           await newConversation.save();
           res.status(200).json(newConversation);
+          return;
         }
       }
     } else {
       res.status(200).json(conversation);
+      return;
     }
   }
 });
@@ -469,10 +556,12 @@ app.post("/sendmessage", async (req, res) => {
   const userId = getUserIdFromToken(token);
   if (!userId) {
     res.status(416).send("Invalid token");
+    return;
   } else {
     const user = await User.findById(userId);
     if (!user) {
       res.status(416).send("Invalid token");
+      return;
     } else {
       if (user.user_type === "user") {
         const conversation = await Conversation.findOne({ user_id: userId, repairshop_id: receiver_id });
@@ -490,6 +579,7 @@ app.post("/sendmessage", async (req, res) => {
           });
           await newConversation.save();
           res.status(200).json(newConversation);
+          return;
         } else {
           conversation.messages.push({
             user_id: userId,
@@ -498,6 +588,7 @@ app.post("/sendmessage", async (req, res) => {
           });
           await conversation.save();
           res.status(200).json(conversation);
+          return;
         }
       } else {
         const conversation = await Conversation.findOne({ user_id: receiver_id, repairshop_id: userId });
@@ -515,6 +606,7 @@ app.post("/sendmessage", async (req, res) => {
           });
           await newConversation.save();
           res.status(200).json(newConversation);
+          return;
         } else {
           conversation.messages.push({
             user_id: userId,
@@ -523,6 +615,7 @@ app.post("/sendmessage", async (req, res) => {
           });
           await conversation.save();
           res.status(200).json(conversation);
+          return;
         }
       }
     }
@@ -535,9 +628,11 @@ app.get("/getreviews", async (req, res) => {
   const userId = getUserIdFromToken(token);
   if (!userId) {
     res.status(416).send("Invalid token");
+    return;
   } else {
     const reviews = await Review.find({ repairshop_id: repairshop_id });
     res.status(200).json(reviews);
+    return;
   }
 });
 
@@ -548,6 +643,7 @@ app.post("/addreview", async (req, res) => {
   const userId = getUserIdFromToken(token);
   if (!userId) {
     res.status(416).send("Invalid token");
+    return;
   } else {
     const newReview = await Review.create({
       user_id: userId,
@@ -558,6 +654,7 @@ app.post("/addreview", async (req, res) => {
     });
     await newReview.save();
     res.status(200).json(newReview);
+    return;
   }
 });
 

@@ -13,7 +13,9 @@ const userSchema = new mongoose.Schema({
   repairshop_address: { type: String, default: null },
   repairshop_phone: { type: String, default: null },
   repairshop_email: { type: String, default: null },
-  repairshop_website: { type: String, default: null }
+  repairshop_website: { type: String, default: null },
+  repairshop_start_time: { type: String, default: "08:00"},
+  repairshop_end_time: { type: String, default: "17:00"},
 });
 
 module.exports = mongoose.model("user", userSchema);
