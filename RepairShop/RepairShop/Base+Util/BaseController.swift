@@ -9,27 +9,41 @@ import UIKit
 import RxSwift
 import SwiftMessages
 
+class SpinnerViewController: UIViewController {
+    var spinner = UIActivityIndicatorView(style: .large)
+
+    override func loadView() {
+        view = UIView()
+        view.backgroundColor = .black.withAlphaComponent(0.16)
+
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.startAnimating()
+        view.addSubview(spinner)
+
+        spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    }
+}
+
 class BaseController: UIViewController {
     let disposeBag = DisposeBag()
     
-    // TODO: Refactor loaders (as subviews)
+    private var loaderController: SpinnerViewController?
     
     func showLoader() {
-//        let alert = UIAlertController(title: nil, message: "Loading...", preferredStyle: .alert)
-//
-//        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
-//        loadingIndicator.hidesWhenStopped = true
-//        loadingIndicator.style = .medium
-//        loadingIndicator.startAnimating();
-//
-//        alert.view.addSubview(loadingIndicator)
-//        present(alert, animated: true, completion: nil)
+        loaderController = SpinnerViewController()
+        
+        addChild(loaderController!)
+        loaderController!.view.frame = view.frame
+        view.addSubview(loaderController!.view)
+        loaderController!.didMove(toParent: self)
     }
     
     func hideLoader() {
-//        if let vc = self.presentedViewController, vc is UIAlertController {
-//            self.dismiss(animated: true)
-//        }
+        guard let loaderController else { return }
+        loaderController.willMove(toParent: nil)
+        loaderController.view.removeFromSuperview()
+        loaderController.removeFromParent()
     }
     
     func handleError(error: Error) {
