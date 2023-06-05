@@ -14,6 +14,7 @@ const Vehicle = require("./model/vehicle");
 const Appointment = require("./model/appointment");
 const Conversation = require("./model/conversation");
 const Review = require("./model/review");
+const LockedInterval = require("./model/locked_interval");
 const { json } = require("express");
 
 function getUserIdFromToken(token) {
@@ -388,6 +389,14 @@ app.post("/addappointment", async (req, res) => {
       res.status(416).send("Selected date/time is not within repairshop hours.");
       return;
     } else {
+      const lockedIntervals = await LockedInterval.find({ repairshop_id: repairshop_id });
+      for (var i = 0; i < lockedIntervals.length; i++) {
+        const lockedInterval = lockedIntervals[i];
+        if (date >= lockedInterval.start_date && date <= lockedInterval.end_date) {
+          res.status(416).send("Selected date/time is not available. Please book at a different time.");
+          return;
+        }
+      }
       const appointment = await Appointment.create({
         vehicle_id,
         repairshop_id,
@@ -476,6 +485,11 @@ app.get("/getrepairshop", async (req, res) => { // checked
   } else {
     const repairshop = await User.findById(id);
     if (!repairshop) {
+      const repairshopFromToken = await User.findById(userId);
+      if (repairshopFromToken.user_type === "repairshop") {
+        res.status(200).json(repairshopFromToken);
+        return;
+      }
       res.status(416).send("No repairshop found");
       return;
     } else {
@@ -679,6 +693,99 @@ const job = cron.schedule('*/15 * * * *', async () => {
     });
   } catch (error) {
     console.error('Error occurred during cron job:', error);
+  }
+});
+
+app.get("/getlockedintervals", async (req, res) => {
+  const { token } = req.headers;
+  const userId = getUserIdFromToken(token);
+  if (!userId) {
+    res.status(416).send("Invalid token");
+    return;
+  } else {
+    const repairshop = await User.findById(userId);
+    if (!repairshop) {
+      res.status(416).send("Invalid token");
+      return;
+    } else if (repairshop.user_type !== "repairshop") {
+      res.status(416).send("Invalid token");
+      return;
+    } else {
+      const lockedIntervals = await LockedInterval.find({ repairshop_id: userId });
+      res.status(200).json(lockedIntervals);
+      return;
+    }
+  }
+});
+
+app.post("/addlockedinterval", async (req, res) => {
+  const { token } = req.headers;
+  const { start_date, end_date } = req.body;
+  const userId = getUserIdFromToken(token);
+  if (!userId) {
+    res.status(416).send("Invalid token");
+    return;
+  } else {
+    const repairshop = await User.findById(userId);
+    if (!repairshop) {
+      res.status(416).send("Invalid token");
+      return;
+    } else if (repairshop.user_type !== "repairshop") {
+      res.status(416).send("Invalid token");
+      return;
+    } else {
+      // cast dates, check if valid
+      const startDate = new Date(start_date);
+      const endDate = new Date(end_date);
+      if (startDate > endDate) {
+        res.status(416).send("Invalid dates");
+        return;
+      } else {
+        // check if interval is already locked
+        const lockedIntervals = await LockedInterval.find({ repairshop_id: userId });
+        for (let i = 0; i < lockedIntervals.length; i++) {
+          if (startDate >= lockedIntervals[i].start_date && startDate <= lockedIntervals[i].end_date) {
+            res.status(416).send("Interval already locked");
+            return;
+          } else if (endDate >= lockedIntervals[i].start_date && endDate <= lockedIntervals[i].end_date) {
+            res.status(416).send("Interval already locked");
+            return;
+          }
+        }
+        // create new locked interval
+        const newLockedInterval = await LockedInterval.create({
+          repairshop_id: userId,
+          start_date: startDate,
+          end_date: endDate,
+        });
+        await newLockedInterval.save();
+        res.status(200).json(newLockedInterval);
+        return;
+      }
+    }
+  }
+});
+
+app.post("/removelockedinterval", async (req, res) => {
+  const { token } = req.headers;
+  const { locked_interval_id } = req.body;
+  const userId = getUserIdFromToken(token);
+  if (!userId) {
+    res.status(416).send("Invalid token");
+    return;
+  } else {
+    const lockedInterval = await LockedInterval.findById(locked_interval_id);
+    if (!lockedInterval) {
+      res.status(416).send("Invalid locked interval id");
+      return;
+    } else if (lockedInterval.repairshop_id !== userId) {
+      res.status(416).send("Invalid token");
+      return;
+    } else {
+      await lockedInterval.deleteOne({ _id: locked_interval_id });
+      res.status(201).send("Locked interval removed");
+      return;
+    }
   }
 });
 
