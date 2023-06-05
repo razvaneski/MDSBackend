@@ -14,4 +14,7 @@ struct Repairshop {
     let phone: String
     let email: String
     let website: String
+    
+    let startTime: String
+    let endTime: String
 }

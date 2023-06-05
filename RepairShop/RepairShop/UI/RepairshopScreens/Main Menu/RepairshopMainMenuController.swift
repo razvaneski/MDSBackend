@@ -37,6 +37,7 @@ class RepairshopMainMenuController: BaseController {
     }
     
     @IBAction func onProfilePressed(_ sender: Any) {
-        // TODO
+        let vc = instantiateViewController(ofType: RepairshopProfileController.self, inStoryboard: .RepairshopScreens)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

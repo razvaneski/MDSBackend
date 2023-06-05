@@ -42,6 +42,9 @@
 		E5BF4CCE2A2CBC34000FC7FA /* RepairshopsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF4CCD2A2CBC34000FC7FA /* RepairshopsService.swift */; };
 		E5BF4CD02A2CBC59000FC7FA /* RepairshopsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF4CCF2A2CBC59000FC7FA /* RepairshopsAPI.swift */; };
 		E5BF4CD22A2D1D58000FC7FA /* AddRatingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF4CD12A2D1D58000FC7FA /* AddRatingController.swift */; };
+		E5BF4CD42A2DEA2E000FC7FA /* LockedInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF4CD32A2DEA2E000FC7FA /* LockedInterval.swift */; };
+		E5BF4CD72A2DEE1F000FC7FA /* RepairshopProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF4CD62A2DEE1F000FC7FA /* RepairshopProfileController.swift */; };
+		E5BF4CD92A2DFA6A000FC7FA /* AddLockedIntervalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF4CD82A2DFA6A000FC7FA /* AddLockedIntervalController.swift */; };
 		E5ECF6FA2A0665980065A541 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ECF6F92A0665980065A541 /* BaseController.swift */; };
 		E5ECF6FC2A0666EB0065A541 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ECF6FB2A0666EB0065A541 /* HomeViewModel.swift */; };
 		E5ECF6FE2A06674F0065A541 /* Variable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ECF6FD2A06674F0065A541 /* Variable.swift */; };
@@ -105,6 +108,9 @@
 		E5BF4CCD2A2CBC34000FC7FA /* RepairshopsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairshopsService.swift; sourceTree = "<group>"; };
 		E5BF4CCF2A2CBC59000FC7FA /* RepairshopsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairshopsAPI.swift; sourceTree = "<group>"; };
 		E5BF4CD12A2D1D58000FC7FA /* AddRatingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRatingController.swift; sourceTree = "<group>"; };
+		E5BF4CD32A2DEA2E000FC7FA /* LockedInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedInterval.swift; sourceTree = "<group>"; };
+		E5BF4CD62A2DEE1F000FC7FA /* RepairshopProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairshopProfileController.swift; sourceTree = "<group>"; };
+		E5BF4CD82A2DFA6A000FC7FA /* AddLockedIntervalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLockedIntervalController.swift; sourceTree = "<group>"; };
 		E5ECF6F92A0665980065A541 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		E5ECF6FB2A0666EB0065A541 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		E5ECF6FD2A06674F0065A541 /* Variable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variable.swift; sourceTree = "<group>"; };
@@ -206,6 +212,7 @@
 		E5587F9B2A1A406B00374442 /* RepairshopScreens */ = {
 			isa = PBXGroup;
 			children = (
+				E5BF4CD52A2DEE15000FC7FA /* Profile */,
 				E5BF4CC12A2A4858000FC7FA /* Appointments */,
 				E5587F9C2A1A40A300374442 /* Main Menu */,
 			);
@@ -288,6 +295,15 @@
 			path = Repairshops;
 			sourceTree = "<group>";
 		};
+		E5BF4CD52A2DEE15000FC7FA /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				E5BF4CD62A2DEE1F000FC7FA /* RepairshopProfileController.swift */,
+				E5BF4CD82A2DFA6A000FC7FA /* AddLockedIntervalController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		E5ECF6F82A06658A0065A541 /* Base+Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -324,6 +340,7 @@
 				E5587F7B2A190A5A00374442 /* Repairshop.swift */,
 				E5587F882A1A204E00374442 /* Conversation.swift */,
 				E5BF4CCB2A2CAE5F000FC7FA /* Review.swift */,
+				E5BF4CD32A2DEA2E000FC7FA /* LockedInterval.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -513,6 +530,7 @@
 				E5587F8D2A1A22D700374442 /* ConversationsService.swift in Sources */,
 				E5A47BE629F6CDA5004C5294 /* HomeController.swift in Sources */,
 				E5587F8B2A1A20C000374442 /* ConversationsAPI.swift in Sources */,
+				E5BF4CD72A2DEE1F000FC7FA /* RepairshopProfileController.swift in Sources */,
 				E5ECF71B2A06FBF70065A541 /* SignUpViewModel.swift in Sources */,
 				E5ECF7052A0674750065A541 /* UserAPI.swift in Sources */,
 				E5ECF6FE2A06674F0065A541 /* Variable.swift in Sources */,
@@ -551,6 +569,7 @@
 				E5ECF6FC2A0666EB0065A541 /* HomeViewModel.swift in Sources */,
 				E5ECF70D2A0676640065A541 /* BaseService.swift in Sources */,
 				E5587F892A1A204E00374442 /* Conversation.swift in Sources */,
+				E5BF4CD92A2DFA6A000FC7FA /* AddLockedIntervalController.swift in Sources */,
 				E5BF4CD02A2CBC59000FC7FA /* RepairshopsAPI.swift in Sources */,
 				E5ECF7232A07CEA70065A541 /* VehiclesService.swift in Sources */,
 				E5BF4CCC2A2CAE5F000FC7FA /* Review.swift in Sources */,
@@ -560,6 +579,7 @@
 				E5BF4CD22A2D1D58000FC7FA /* AddRatingController.swift in Sources */,
 				E5587F922A1A2E9D00374442 /* ConversationsViewModel.swift in Sources */,
 				E5ECF72A2A07D27A0065A541 /* MyVehiclesController.swift in Sources */,
+				E5BF4CD42A2DEA2E000FC7FA /* LockedInterval.swift in Sources */,
 				E5ECF7272A07CF0C0065A541 /* Vehicle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

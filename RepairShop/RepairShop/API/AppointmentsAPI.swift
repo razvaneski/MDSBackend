@@ -45,7 +45,9 @@ class AppointmentsAPI: BaseAPI {
                             address: repairshopJson["repairshop_address"].stringValue,
                             phone: repairshopJson["repairshop_phone"].stringValue,
                             email: repairshopJson["repairshop_email"].stringValue,
-                            website: repairshopJson["repairshop_website"].stringValue
+                            website: repairshopJson["repairshop_website"].stringValue,
+                            startTime: repairshopJson["repairshop_start_time"].stringValue,
+                            endTime: repairshopJson["repairshop_end_time"].stringValue
                         )
                     }(),
                     date: {
@@ -87,7 +89,9 @@ class AppointmentsAPI: BaseAPI {
                             address: repairshopJson["repairshop_address"].stringValue,
                             phone: repairshopJson["repairshop_phone"].stringValue,
                             email: repairshopJson["repairshop_email"].stringValue,
-                            website: repairshopJson["repairshop_website"].stringValue
+                            website: repairshopJson["repairshop_website"].stringValue,
+                            startTime: repairshopJson["repairshop_start_time"].stringValue,
+                            endTime: repairshopJson["repairshop_end_time"].stringValue
                         )
                     }(),
                     date: {

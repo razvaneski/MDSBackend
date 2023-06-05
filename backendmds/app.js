@@ -783,7 +783,7 @@ app.post("/removelockedinterval", async (req, res) => {
       return;
     } else {
       await lockedInterval.deleteOne({ _id: locked_interval_id });
-      res.status(201).send("Locked interval removed");
+      res.status(201).json({ message: "Locked interval deleted" });
       return;
     }
   }
